@@ -73,22 +73,25 @@ a{color:var(--sky-d)}
 .say p:before{content:"";position:absolute;left:-9px;top:16px;width:14px;height:14px;background:var(--card);border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
 
 /* 시간선 */
-.colhead{display:grid;grid-template-columns:1fr 60px 1fr;gap:8px;font-family:var(--head);font-size:16px}
-.colhead .l{color:var(--mint-d)} .colhead .r{color:var(--ember);text-align:right}
-.tl{position:relative;display:flex;flex-direction:column;gap:8px}
-.tl:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px dotted var(--line);transform:translateX(-1px)}
-.row{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:8px;position:relative}
-.yr{white-space:nowrap;text-align:center;font-family:var(--head);font-size:13px;color:var(--sub);background:var(--card);position:relative;z-index:1;line-height:1.3;border-radius:8px}
-.pick{all:unset;box-sizing:border-box;cursor:pointer;border-radius:18px;padding:10px 12px;display:flex;flex-direction:column;gap:0;min-width:0;border:2px solid transparent;transition:transform .15s}
+.lanes{display:flex;flex-direction:column;gap:14px}
+.lane{display:flex;flex-direction:column;gap:8px}
+.lane h3{font-size:18px;display:flex;align-items:center;gap:8px}
+.lane.light h3{color:var(--mint-d)} .lane.resp h3{color:var(--ember)} .lane.both h3{color:var(--sky-d)}
+.lane h3 small{font-family:var(--body);font-size:13px;color:var(--sub)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.lane.both .cards{grid-template-columns:1fr}
+.pick{all:unset;box-sizing:border-box;cursor:pointer;border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0;border:2px solid transparent;transition:transform .15s;height:100%}
 .pick:hover{transform:translateY(-2px)}
 .pick:focus-visible{outline:3px solid var(--sky-d);outline-offset:2px}
-.pick .nm{font-family:var(--head);font-size:20px;line-height:1.3}
-.pick .hk{font-size:13.5px;color:var(--sub);line-height:1.45}
+.pick .yr{font-family:var(--head);font-size:13px;color:var(--sub);line-height:1.2}
+.pick .nm{font-family:var(--head);font-size:19px;line-height:1.25}
+.pick .hk{font-size:13px;color:var(--sub);line-height:1.4}
 .pick.light{background:var(--mint-l)} .pick.light .nm{color:var(--mint-d)}
-.pick.resp{background:var(--ember-l);text-align:right} .pick.resp .nm{color:var(--ember)}
-.pick.both{background:var(--sky-l);text-align:center} .pick.both .nm{color:var(--sky-d)}
+.pick.resp{background:var(--ember-l)} .pick.resp .nm{color:var(--ember)}
+.pick.both{background:var(--sky-l)} .pick.both .nm{color:var(--sky-d)}
+.pick.both{flex-direction:row;align-items:baseline;gap:10px;flex-wrap:wrap}
 .pick[aria-pressed="true"]{border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
-.row.c{grid-template-columns:1fr} .row.c .pick{max-width:320px;margin:6px auto 0;width:100%}
+@media (min-width:600px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* 고른 주제 */
 .empty{border:2px dashed var(--line);border-radius:20px;padding:14px;color:var(--sub);text-align:center;font-size:15px}
@@ -205,8 +208,6 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
 .toast.on{opacity:1}
 @media (max-width:600px){
   .today{grid-template-columns:1fr}
-  .row,.colhead{grid-template-columns:1fr 46px 1fr}
-  .pick .nm{font-size:18px}
   .m3{grid-template-columns:repeat(2,minmax(0,1fr))}.m3 .mid{display:none}
   .tip{padding-left:0}
   .hero{grid-template-columns:1fr}.duo{justify-content:flex-end;margin-top:-6px}
@@ -232,10 +233,14 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
   .panel>header h2{font-size:27px}
   .panel>.in{padding:24px 26px}
   /* 1단계: 왼쪽 시간선, 오른쪽 고른 주제(따라 내려옴) */
-  #s1>.in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px 28px;align-items:start}
-  #s1>.in>*{grid-column:1}
-  #s1 #nochoice,#s1 #chosen{grid-column:2;grid-row:1/span 3;position:sticky;top:84px;max-height:calc(100vh - 110px);overflow:auto}
-  #s1 #nochoice{padding:40px 20px}
+  .cards{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .lane.both .cards{grid-template-columns:1fr}
+  /* 고른 주제: 가로로 넓게 */
+  #chosen{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;row-gap:6px;align-items:center}
+  #chosen>*{grid-column:1}
+  #chosen>.btns{grid-column:2;grid-row:1/span 3;justify-content:flex-end}
+  #chosen>.file{grid-column:1/-1}
+  #chosen>.doc{grid-column:1/-1}
   /* 2·3단계: 설명은 왼쪽, 화면 그림은 오른쪽 */
   .how{gap:22px}
   .how>li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;row-gap:12px;align-content:start}
@@ -325,9 +330,8 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
   <section class="panel c-mint" id="s1">
     <header><span class="n">1</span><h2>주제를 고르고 PDF 받기<small>13개 가운데 하나! 친구랑 겹쳐도 괜찮아요</small></h2></header>
     <div class="in">
-      <div class="say"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#saerok"/></svg><p>왼쪽은 광합성, 오른쪽은 세포호흡이야. 위에서 아래로 시간 순서!</p></div>
-      <div class="colhead"><span class="l">광합성</span><span></span><span class="r">세포호흡</span></div>
-      <div class="tl" id="tl"></div>
+      <div class="say"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#saerok"/></svg><p>위는 광합성, 아래는 세포호흡이야. 왼쪽에서 오른쪽으로 시간 순서!</p></div>
+      <div class="lanes" id="tl"></div>
       <div class="empty" id="nochoice">위에서 주제를 누르면 여기에 <strong>PDF 받기</strong> 단추가 나와요.</div>
       <div class="chosen" id="chosen" hidden>
         <span class="tag" id="ch-tag"></span>
@@ -490,12 +494,14 @@ const $ = id => document.getElementById(id);
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 
 const tl = $("tl");
-DATA.topics.forEach(t=>{
-  const row = document.createElement("div");
-  const card = `<button class="pick ${t.kind}" type="button" aria-pressed="false" data-id="${t.id}"><span class="nm">${t.name}</span><span class="hk">${t.hook}</span></button>`;
-  if(t.kind==="both"){ row.className="row c"; row.innerHTML = card; }
-  else { row.className="row"; row.innerHTML = t.kind==="light" ? `${card}<span class="yr">${t.ylab}</span><span></span>` : `<span></span><span class="yr">${t.ylab}</span>${card}`; }
-  tl.appendChild(row);
+[["light","🌱 광합성 역사","빛으로 양분을 만드는 과정"],["resp","🔥 세포호흡 역사","양분에서 에너지를 꺼내는 과정"],["both","🔬 둘을 비교","전자전달계는 어떻게 닮았을까"]].forEach(([k,title,sub])=>{
+  const lane = document.createElement("div"); lane.className = "lane "+k;
+  lane.innerHTML = `<h3>${title} <small>${sub}</small></h3><div class="cards"></div>`;
+  const cards = lane.querySelector(".cards");
+  DATA.topics.filter(t=>t.kind===k).forEach(t=>{
+    cards.insertAdjacentHTML("beforeend", `<button class="pick ${t.kind}" type="button" aria-pressed="false" data-id="${t.id}">${t.kind==="both"?"":`<span class="yr">${t.ylab}</span>`}<span class="nm">${t.name}</span><span class="hk">${t.hook}</span></button>`);
+  });
+  tl.appendChild(lane);
 });
 tl.addEventListener("click", e=>{ const b=e.target.closest(".pick"); if(b) choose(b.dataset.id, true); });
 
