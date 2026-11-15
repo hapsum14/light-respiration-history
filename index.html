@@ -177,6 +177,22 @@ th,td{border:1.5px solid var(--line);padding:6px 8px;text-align:left;vertical-al
 .tabs button{font-family:var(--head);font-size:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:3px 16px;cursor:pointer}
 .tabs button[aria-selected="true"]{border-color:var(--sky-d);background:var(--sky-l);color:var(--sky-d)}
 
+/* 나만의 스타일 빈칸 */
+.style-box{background:var(--sky-l);border:2px solid var(--sky);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.style-box .say p{font-size:19px}
+.fields{display:flex;flex-direction:column;gap:10px}
+.field{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 10px;align-items:center}
+.field label{font-family:var(--head);font-size:16px;color:var(--sky-d)}
+.field input{font:inherit;font-size:16px;border:2px solid var(--sky);border-radius:12px;padding:5px 10px;background:var(--card);color:var(--ink);min-width:0;width:100%}
+.field input:focus{outline:3px solid var(--sky-d);outline-offset:1px}
+.field .chips{grid-column:2;display:flex;flex-wrap:wrap;gap:6px}
+.field .chips:empty{display:none}
+.chip{font-family:var(--body);font-size:14px;border:1.5px solid var(--sky);background:var(--card);color:var(--ink);border-radius:999px;padding:1px 10px;cursor:pointer}
+.chip:hover{background:var(--sky)}
+mark.blank{background:var(--yel);color:var(--ink);border-radius:4px;padding:0 2px;font-weight:700}
+mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
+@media (max-width:600px){.field{grid-template-columns:1fr}.field .chips{grid-column:1}}
+
 /* 자기 평가 */
 .check{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
 .check label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;background:var(--pink-l);border-radius:14px;padding:8px 12px}
@@ -377,6 +393,10 @@ th,td{border:1.5px solid var(--line);padding:6px 8px;text-align:left;vertical-al
             <button role="tab" aria-selected="false" data-k="slide" type="button">슬라이드</button>
             <button role="tab" aria-selected="false" data-k="video" type="button">동영상</button>
           </div>
+          <div class="style-box">
+            <div class="say"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#saerok"/></svg><p>[&nbsp;&nbsp;&nbsp;] 빈칸은 내 마음대로 채워! 예시를 눌러도 되고, 직접 써도 돼. 비워 두면 AI가 알아서 정해.</p></div>
+            <div id="style-fields" class="fields"></div>
+          </div>
           <div class="prompt" id="p-make"></div>
           <div class="btns"><button class="b main" type="button" data-copy="p-make">지시문 복사</button></div></li>
         <li><p class="t">다 만들어지면 <em>⋮</em> 메뉴에서 <em>다운로드</em>로 저장해요.</p>
@@ -405,12 +425,14 @@ th,td{border:1.5px solid var(--line);padding:6px 8px;text-align:left;vertical-al
   </section>
 
   <section class="panel c-mint" id="s5">
-    <header><span class="n">5</span><h2>패들렛에 올리기<small>내 과학자의 연도 칸에 올려요</small></h2></header>
+    <header><span class="n">5</span><h2>패들렛에 올리기<small>우리 반 자료가 한 판에 모여요</small></h2></header>
     <div class="in">
       <p>패들렛: <span id="pd-link" style="font-family:var(--head)"></span></p>
       <ol class="list">
-        <li>내 과학자의 <strong>연도 칸</strong>에서 + 를 눌러요.</li>
-        <li>아래 틀대로 제목과 내용을 쓰고, 저장한 파일을 첨부해요.</li>
+        <li>패들렛 오른쪽 아래 <strong>+ 게시</strong>를 눌러요.</li>
+        <li>제목은 <strong id="pd-title">🌱 1779 잉엔하우스 내 이름</strong>처럼 써요. 🌱 광합성 · 🔥 세포호흡 · 🔬 비교</li>
+        <li>아래 틀대로 내용을 쓰고, 저장한 파일을 첨부해요.</li>
+        <li>글쓰기 창 아래 색(●)을 골라요. 광합성 <strong>그린</strong> · 세포호흡 <strong>레드</strong> · 비교 <strong>블루</strong></li>
       </ol>
       <div class="prompt" id="p-post"></div>
       <div class="btns"><button class="b main" type="button" data-copy="p-post">글 틀 복사</button></div>
@@ -487,24 +509,59 @@ $("b-read").onclick = ()=>{ const d=$("ch-doc"); d.hidden=!d.hidden; $("b-read")
 
 function who(){ return cur ? (cur.kind==="both" ? "광합성과 세포호흡의 전자전달계 비교" : `${cur.name}(${cur.ylab})의 연구`) : "[내가 고른 주제]"; }
 function tag(){ return cur ? (cur.kind==="both" ? "[비교] 전자전달계" : `[${cur.ylab} ${cur.name}]`) : "[연도 과학자]"; }
+/* 나만의 스타일 빈칸: 갈래마다 묻는 항목과 예시 */
+const FIELDS = {
+  theme:  {label:"디자인 테마", ex:["손그림 노트","신문 기사","실험 일지","만화 컷","미니멀 카드","레트로 포스터"]},
+  concept:{label:"컨셉·이야기 방식", ex:["과학자 가상 인터뷰","뉴스 속보","탐정 수사 일지","시간 여행","SNS 게시물"]},
+  color:  {label:"색 분위기", ex:["초록 파스텔","따뜻한 주황","하늘색과 흰색","흑백 + 포인트 색"]},
+  focus:  {label:"꼭 강조할 것", ex:["실험 장치 그림","대조 실험","결과 그래프","결정적인 발견의 순간"]},
+  tone:   {label:"말투", ex:["친구에게 설명하듯","뉴스 앵커처럼","과학자 1인칭","퀴즈를 내듯"]},
+  pages:  {label:"슬라이드 장 수", ex:["5장","6장","8장"]},
+  len:    {label:"동영상 길이", ex:["1분","2분","3분"]},
+  extra:  {label:"그 밖에 바라는 점", ex:[]}
+};
+const KEYS = {info:["theme","concept","color","focus","tone","extra"], slide:["pages","theme","concept","color","focus","tone","extra"], video:["len","concept","tone","focus","extra"]};
+const BL = "[   ]";
+let sv = {}; try{ sv = JSON.parse(localStorage.getItem("lp-style")||"{}"); }catch(e){}
+function saveSv(){ try{ localStorage.setItem("lp-style", JSON.stringify(sv)); }catch(e){} }
+function drawFields(){
+  const box = $("style-fields"); box.innerHTML = "";
+  KEYS[kind].forEach(k=>{
+    const f = FIELDS[k], row = document.createElement("div"); row.className = "field";
+    row.innerHTML = `<label for="sf-${k}">${f.label}</label><input id="sf-${k}" type="text" placeholder="[   ] 내가 원하는 방향" autocomplete="off"><div class="chips"></div>`;
+    const inp = row.querySelector("input"); inp.value = sv[k]||"";
+    inp.addEventListener("input", ()=>{ sv[k] = inp.value.trim(); saveSv(); fill(); });
+    const ch = row.querySelector(".chips");
+    f.ex.forEach(x=>{ const b=document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=x;
+      b.onclick=()=>{ inp.value = inp.value===x ? "" : x; sv[k]=inp.value; saveSv(); fill(); }; ch.appendChild(b); });
+    box.appendChild(row);
+  });
+}
+function esc(s){ return s.replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
 function fill(){
   const w = who();
   const src = "내가 올린 PDF 자료를 중심으로 만들고, 내가 더 넣은 믿을 만한 자료가 있으면 함께 활용해 줘. 소스에 없는 내용은 지어내지 마.";
   const frame = cur && cur.kind==="both"
     ? "① 두 세포소기관의 위치와 하는 일 ② 공통점(전자 운반체, H⁺ 농도 차이, ATP 합성효소) ③ 차이점 표(ATP 합성 장소, 전자공여체, 최종 전자수용체, H⁺가 쌓이는 곳) ④ 이 원리를 밝힌 실험 한 가지 ⑤ 두 과정이 이어지는 순환"
     : "① 시대 배경 ② 관찰·의문 ③ 가설 ④ 실험 방법(장치와 순서를 그림으로) ⑤ 결과와 결론 ⑥ 오늘날 광합성·세포호흡에서 무엇을 밝힌 것인지";
-  $("p-make").textContent = {
-    info: `고등학교 2학년 학생이 보는 한국어 인포그래픽을 만들어 줘.\n주제: ${w}\n${src}\n위에서 아래로 다음 순서로 구성해 줘: ${frame}.\n연도, 과학자 이름, 물질 이름(이산화 탄소, 산소, ATP 등)은 자료와 똑같이 쓰고, 한 칸의 글은 두 줄 이내로 짧게 써 줘.`,
-    slide:`고등학교 2학년 학생이 발표할 한국어 슬라이드 6장을 만들어 줘.\n주제: ${w}\n${src}\n장마다 다음을 하나씩 담아 줘: ${frame}.\n장마다 큰 그림이나 도식 하나와 짧은 문장 3줄 이내로 구성하고, 마지막 장에 참고 문헌을 넣어 줘.`,
-    video:`고등학교 2학년 학생이 보는 2~3분 길이의 한국어 설명 동영상을 만들어 줘.\n주제: ${w}\n${src}\n다음 순서로 이야기해 줘: ${frame}.\n어려운 용어는 처음 나올 때 쉬운 말로 풀어 줘.`
+  const V = k => `{{${k}}}`;
+  const style = KEYS[kind].filter(k=>!["pages","len"].includes(k)).map(k=>`- ${FIELDS[k].label}: ${V(k)}`).join("\n");
+  const tail = `\n[나만의 스타일]\n${style}\n빈칸([   ])으로 남은 항목은 주제에 어울리게 정해 줘. 스타일을 바꿔도 과학 내용은 자료와 똑같이 정확하게 써 줘.`;
+  const raw = {
+    info: `고등학교 2학년 학생이 보는 한국어 인포그래픽을 만들어 줘.\n주제: ${w}\n${src}\n[내용] 위에서 아래로 이 순서로 구성해 줘: ${frame}.\n연도, 과학자 이름, 물질 이름(이산화 탄소, 산소, ATP 등)은 자료와 똑같이 쓰고, 한 칸의 글은 두 줄 이내로 짧게 써 줘.${tail}`,
+    slide:`고등학교 2학년 학생이 발표할 한국어 슬라이드를 ${V("pages")} 만들어 줘.\n주제: ${w}\n${src}\n[내용] 다음을 차례로 담아 줘: ${frame}.\n장마다 큰 그림이나 도식 하나와 짧은 문장 3줄 이내로 구성하고, 마지막 장에 참고 문헌을 넣어 줘.${tail}`,
+    video:`고등학교 2학년 학생이 보는 ${V("len")} 길이의 한국어 설명 동영상을 만들어 줘.\n주제: ${w}\n${src}\n[내용] 다음 순서로 이야기해 줘: ${frame}.\n어려운 용어는 처음 나올 때 쉬운 말로 풀어 줘.${tail}`
   }[kind];
+  $("p-make").innerHTML = esc(raw).replace(/\{\{(\w+)\}\}/g, (_,k)=> sv[k] ? `<mark class="fillv">${esc(sv[k])}</mark>` : `<mark class="blank">${BL}</mark>`);
   $("p-check").textContent = `너는 고등학교 생명과학 선생님이야. 첨부한 파일은 내가 NotebookLM으로 만든 '${w}' 자료야.\n고친 문장을 대신 써 주지 말고, 다음을 검사해서 표로 알려 줘.\n1. 과학적 오류: 용어, 물질, 반응, 일어나는 장소가 틀린 곳\n2. 역사적 오류: 연도, 인물, 실험 방법, 실험 결과가 틀린 곳\n표의 칸: [틀린 부분 | 바른 내용 | 근거(교과서 수준의 사실, 원 논문, 노벨상 누리집처럼 믿을 수 있는 곳)]\n3. '관찰·의문 → 가설 → 실험 → 결과·결론' 네 단계가 모두 들어 있는지, 빠진 단계가 있으면 무엇인지\n확실하지 않은 것은 '확실하지 않음'이라고 써 줘. 틀린 곳이 없으면 '오류 없음'이라고 써 줘.`;
   $("p-post").textContent = `제목: ${tag()} 내 이름\n\n관찰·의문: \n가설: \n실험: \n결과·결론: \n오늘날의 의미(세포호흡·광합성의 어느 부분?): \n더 넣은 자료(있으면 출처): \n검증 메모(제미나이로 확인한 것): 고친 점 1가지 또는 '오류 없음'\n\n+ 만든 파일 첨부(인포그래픽 그림 / 슬라이드 PDF / 동영상)`;
+  $("pd-title").textContent = cur ? `${{light:"🌱",resp:"🔥",both:"🔬"}[cur.kind]} ${cur.kind==="both" ? "비교 전자전달계" : cur.ylab+" "+cur.name} 내 이름` : "🌱 1779 잉엔하우스 내 이름";
   $("mk-title").textContent = `${tag()} 내 이름`;
   $("ex-title").textContent = `${tag()} 김가온`;
 }
 $("kind-tabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; kind=b.dataset.k;
-  document.querySelectorAll("#kind-tabs button").forEach(x=>x.setAttribute("aria-selected", x===b)); fill(); });
+  document.querySelectorAll("#kind-tabs button").forEach(x=>x.setAttribute("aria-selected", x===b)); drawFields(); fill(); });
+drawFields();
 document.querySelectorAll("[data-copy]").forEach(b=> b.onclick = ()=> copy($(b.dataset.copy).textContent, "복사했어요!"));
 
 function copy(text, msg){
