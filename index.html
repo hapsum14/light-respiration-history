@@ -177,6 +177,8 @@ th,td{border:1.5px solid var(--line);padding:6px 8px;text-align:left;vertical-al
 .tabs button{font-family:var(--head);font-size:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:3px 16px;cursor:pointer}
 .tabs button[aria-selected="true"]{border-color:var(--sky-d);background:var(--sky-l);color:var(--sky-d)}
 
+.lead-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.lead-col .tabs{padding-left:42px}
 /* 나만의 스타일 빈칸 */
 .style-box{background:var(--sky-l);border:2px solid var(--sky);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:12px}
 .style-box .say p{font-size:19px}
@@ -240,6 +242,21 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
   .how>li>*{grid-column:1}
   .how>li>.mock{grid-column:2;grid-row:1/span 6;align-self:start}
   .tip{padding-left:42px}
+  /* 지시문 만들기: 위에 설명·화면 그림, 아래에 빈칸 채우기(왼쪽)와 완성된 지시문(오른쪽) */
+  .how>li.make{grid-template-areas:"lead mock" "style prompt" "style btns";grid-template-rows:auto auto 1fr;row-gap:14px}
+  .how>li.make>.lead-col{grid-area:lead;align-self:center}
+  .how>li.make>.mock{grid-area:mock;grid-row:auto}
+  .how>li.make>.style-box{grid-area:style}
+  .how>li.make>.prompt{grid-area:prompt;grid-column:auto}
+  .how>li.make>.btns{grid-area:btns;align-self:start}
+  .style-box{padding:12px 14px;gap:10px}
+  .style-box .say svg{width:40px}
+  .style-box .say p{font-size:17px;padding:6px 12px}
+  .fields{gap:8px}
+  .field{grid-template-columns:104px minmax(0,1fr);gap:4px 8px}
+  .field label{font-size:15px}
+  .field input{font-size:15px;padding:4px 10px}
+  .chip{font-size:13px;padding:0 9px}
   .note{padding:18px 22px}
   /* 4·5단계는 나란히 */
   #s4,#s5{grid-column:auto;align-self:stretch}
@@ -384,14 +401,17 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
             </div>
           </div>
           <p class="tip">연필이 안 보이면 이름 위에 마우스를 올리거나 길게 눌러요. 휴대폰 앱은 아래쪽 '스튜디오' 탭에 있어요.</p></li>
-        <li><p class="t">설명 칸에 아래 <em>지시문</em>을 붙여 넣고 <em>생성</em>을 눌러요.</p>
-          <div class="mock" aria-hidden="true">
-            <div class="mdlg"><h4>인포그래픽 맞춤설정</h4><div class="mtext hl left" data-tip="여기에 붙여 넣기">만들려는 인포그래픽을 설명하세요</div><div class="mrow"><span>언어: 한국어</span><span class="mbtn">생성</span></div></div>
-          </div>
+        <li class="make"><div class="lead-col">
+          <p class="t">설명 칸에 아래 <em>지시문</em>을 붙여 넣고 <em>생성</em>을 눌러요.</p>
           <div class="tabs" role="tablist" id="kind-tabs">
             <button role="tab" aria-selected="true" data-k="info" type="button">인포그래픽</button>
             <button role="tab" aria-selected="false" data-k="slide" type="button">슬라이드</button>
             <button role="tab" aria-selected="false" data-k="video" type="button">동영상</button>
+          </div>
+          <p class="tip mtip">먼저 만들 것을 고르고, 아래 <strong>빈칸</strong>을 채우면 지시문이 저절로 바뀌어요. 다 채운 뒤 <strong>지시문 복사</strong>를 눌러 설명 칸에 붙여 넣어요.</p>
+          </div>
+          <div class="mock" aria-hidden="true">
+            <div class="mdlg"><h4>인포그래픽 맞춤설정</h4><div class="mtext hl left" data-tip="여기에 붙여 넣기">만들려는 인포그래픽을 설명하세요</div><div class="mrow"><span>언어: 한국어</span><span class="mbtn">생성</span></div></div>
           </div>
           <div class="style-box">
             <div class="say"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#saerok"/></svg><p>[&nbsp;&nbsp;&nbsp;] 빈칸은 내 마음대로 채워! 예시를 눌러도 되고, 직접 써도 돼. 비워 두면 AI가 알아서 정해.</p></div>
