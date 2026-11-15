@@ -1,0 +1,377 @@
+<!doctype html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>빛과 호흡의 과학사</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>[hidden]{display:none!important}
+/* 두 갈래(빛 = 광합성 초록, 호흡 = 불씨 주황)가 한 시간선 위에서 엇갈리는 구성. 한 단, 휴대폰 우선. 단계마다 실제 화면을 닮은 작은 그림 */
+:root{
+  --bg:#F5F6F0; --card:#FFFFFF; --ink:#1E2420; --muted:#5D665F; --line:#DCE0D6;
+  --leaf:#2F7D4F; --leaf-soft:#E2F0E6; --ember:#C8582A; --ember-soft:#F8E6DC;
+  --both:#4B5BA6; --both-soft:#E4E7F6; --code:#EEF0E9;
+  --ui:#F8F9FB; --ui-line:#E3E5EA; --ui-chip:#EEF0F4; --hl:#E8457A; --hl-soft:#FDE4EC;
+  --display:"Do Hyeon","Noto Sans KR",system-ui,sans-serif;
+  --body:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141815; --card:#1D221E; --ink:#E8ECE6; --muted:#A3ACA4; --line:#323A33;
+  --leaf:#6CC48F; --leaf-soft:#1F3427; --ember:#F0956B; --ember-soft:#3A251C;
+  --both:#9DA9EC; --both-soft:#252A44; --code:#232924;
+  --ui:#22262E; --ui-line:#353A44; --ui-chip:#2C313B; --hl:#FF7AA2; --hl-soft:#3D2230; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141815; --card:#1D221E; --ink:#E8ECE6; --muted:#A3ACA4; --line:#323A33;
+  --leaf:#6CC48F; --leaf-soft:#1F3427; --ember:#F0956B; --ember-soft:#3A251C;
+  --both:#9DA9EC; --both-soft:#252A44; --code:#232924;
+  --ui:#22262E; --ui-line:#353A44; --ui-chip:#2C313B; --hl:#FF7AA2; --hl-soft:#3D2230; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px;margin:0}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2{font-family:var(--display);font-weight:400;letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,7vw,44px);line-height:1.15}
+h2{font-size:26px;display:flex;align-items:baseline;gap:10px}
+h2 .no{font-size:14px;font-family:var(--body);font-weight:700;color:var(--bg);background:var(--ink);border-radius:999px;padding:2px 10px;letter-spacing:.04em;flex:none}
+h3{font-size:17px;margin:0}
+p{margin:0}
+a{color:var(--both)}
+.lead,.alt{color:var(--muted)} .alt{font-size:14px}
+.hero{display:flex;flex-direction:column;gap:12px}
+.strands{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;width:fit-content}
+.tag.light{background:var(--leaf-soft);color:var(--leaf)} .tag.resp{background:var(--ember-soft);color:var(--ember)} .tag.both{background:var(--both-soft);color:var(--both)}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flow div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.flow b{display:block;font-size:13px;color:var(--muted);letter-spacing:.06em}
+.flow span{font-size:14px}
+.map{display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
+.map a{color:var(--ink);text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+section{display:flex;flex-direction:column;gap:14px;scroll-margin-top:12px}
+/* 시간선 */
+.tl{position:relative;display:flex;flex-direction:column;gap:8px}
+.tl:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-1px)}
+.row{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;gap:8px;position:relative}
+.yr{text-align:center;font-size:12px;font-weight:700;color:var(--muted);background:var(--bg);position:relative;z-index:1;font-variant-numeric:tabular-nums;line-height:1.3}
+.pick{all:unset;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pick:focus-visible{outline:3px solid var(--both);outline-offset:2px}
+.pick .nm{font-family:var(--display);font-size:20px;line-height:1.2}
+.pick .hk{font-size:13px;color:var(--muted);line-height:1.4}
+.pick.light{border-left:5px solid var(--leaf)} .pick.resp{border-right:5px solid var(--ember);text-align:right}
+.pick.both{border-top:5px solid var(--both);text-align:center}
+.pick.light .nm{color:var(--leaf)} .pick.resp .nm{color:var(--ember)} .pick.both .nm{color:var(--both)}
+.pick[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink) inset}
+.row.c{grid-template-columns:1fr} .row.c .pick{max-width:340px;margin:6px auto 0;width:100%}
+.colhead{display:grid;grid-template-columns:1fr 64px 1fr;gap:8px;font-size:13px;font-weight:700}
+.colhead .l{color:var(--leaf)} .colhead .r{color:var(--ember);text-align:right}
+/* 고른 주제 */
+.chosen{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.chosen .who{font-family:var(--display);font-size:26px;line-height:1.2}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.b{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.b.main{background:var(--ink);color:var(--bg)}
+.b:focus-visible{outline:3px solid var(--both);outline-offset:2px}
+.b svg{width:18px;height:18px}
+.file{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.empty{border:1.5px dashed var(--line);border-radius:14px;padding:14px;color:var(--muted);font-size:14px;text-align:center}
+.doc{border-top:1px solid var(--line);padding-top:10px;font-size:15px;display:flex;flex-direction:column;gap:10px}
+.doc h3{font-size:18px;margin:4px 0 0} .doc h4{font-size:16px;margin:6px 0 0}
+.doc ul,.doc ol{margin:0;padding-left:20px} .doc li.sub{margin-left:16px;list-style:circle}
+.doc blockquote{margin:0;border-left:3px solid var(--line);padding-left:12px;color:var(--muted)}
+.tw{overflow-x:auto} table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top} th{background:var(--code)}
+/* 따라 하기 단계 */
+.how{display:flex;flex-direction:column;gap:16px;margin:0;padding:0;list-style:none;counter-reset:s}
+.how>li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;counter-increment:s;min-width:0}
+.how>li>.t{display:block;position:relative;padding-left:36px;font-weight:700}
+.how>li>.t span{color:var(--hl)}
+.how>li>.t:before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--hl);color:#fff;font-size:14px;display:grid;place-items:center}
+.how .alt{padding-left:36px}
+/* 화면 그림(실제 화면을 단순하게 그린 것) */
+.mock{max-width:100%;border:1px solid var(--ui-line);border-radius:12px;background:var(--ui);overflow:hidden;font-size:12px;color:var(--ink);user-select:none}
+.mbar{display:flex;align-items:center;gap:6px 8px;padding:10px 12px 18px;border-bottom:1px solid var(--ui-line);background:var(--card);flex-wrap:wrap}
+.mlogo{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px}
+.mlogo i{width:16px;height:10px;border:2.5px solid #5B8DEF;border-bottom:0;border-radius:10px 10px 0 0;display:inline-block}
+.mtab{padding:2px 8px;border-radius:999px;color:var(--muted)} .mtab.on{background:var(--ui-chip);color:var(--ink)}
+.msp{flex:1}
+.mbtn{padding:4px 10px;border-radius:999px;background:var(--ui-chip);font-weight:700;white-space:nowrap}
+.hl{position:relative;outline:3px solid var(--hl);outline-offset:2px;background:var(--hl-soft)!important;color:var(--ink)!important}
+.hl[data-tip]:after{content:attr(data-tip);position:absolute;right:-4px;top:calc(100% + 8px);background:var(--hl);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;z-index:2}
+.hl.left[data-tip]:after{right:auto;left:-4px}
+@media (prefers-reduced-motion:no-preference){.hl{animation:ring 1.6s ease-in-out infinite}}
+@keyframes ring{50%{outline-offset:5px}}
+.mbody{padding:12px;display:flex;flex-direction:column;gap:10px}
+.mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.mcards div{height:46px;border-radius:10px;background:var(--ui-chip)}
+.mcards div.new{display:grid;place-items:center;border:1.5px dashed var(--ui-line);background:transparent;color:var(--muted);font-weight:700}
+.m3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:8px;padding:10px;min-height:150px}
+.mp{background:var(--card);border:1px solid var(--ui-line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.mp b{font-size:12px}
+.mpill{border-radius:999px;background:var(--ui-chip);padding:4px 8px;text-align:center;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msrc{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:8px;background:var(--ui-chip);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msrc:before{content:"PDF";font-size:9px;font-weight:700;background:#D9443B;color:#fff;border-radius:3px;padding:0 3px}
+.msrc.web:before{content:"WEB";background:#5B8DEF}
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.mgrid span{min-width:0}
+.mgrid span{border:1px solid var(--ui-line);border-radius:8px;padding:5px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;background:var(--card)}
+.mgrid .hl{display:flex;justify-content:space-between;align-items:center;gap:4px}
+.pen{width:14px;height:14px;flex:none}
+.mdlg{margin:12px;background:var(--card);border:1px solid var(--ui-line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 20px rgb(0 0 0 / .08)}
+.mdlg h4{margin:0;font-size:13px;text-align:center}
+.msearch{background:var(--ui-chip);border-radius:10px;padding:8px;color:var(--muted)}
+.mchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.mchips span{border:1px solid var(--ui-line);border-radius:999px;padding:4px 10px;background:var(--card)}
+.mdrop{margin-top:14px;border:1.5px dashed var(--ui-line);border-radius:10px;padding:12px;text-align:center;color:var(--muted)}
+.mtext{background:var(--ui-chip);border-radius:10px;padding:8px;min-height:44px;color:var(--muted)}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mout{display:flex;align-items:center;gap:8px;border:1px solid var(--ui-line);border-radius:10px;padding:8px;background:var(--card)}
+.mout .ic{width:30px;height:30px;border-radius:8px;background:var(--leaf-soft);flex:none}
+.mmenu{margin-left:auto;display:flex;flex-direction:column;border:1px solid var(--ui-line);border-radius:8px;background:var(--card);overflow:hidden;font-size:11px}
+.mmenu span{padding:3px 10px}
+/* 지시문 */
+.prompt{background:var(--code);border-radius:10px;padding:12px 14px;font-size:14px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;line-height:1.6}
+.pbox{display:flex;flex-direction:column;gap:8px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 12px;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--ink);font-weight:700}
+.note{font-size:14px;background:var(--both-soft);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.note.ok{background:var(--leaf-soft)}
+.check{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.check label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:var(--leaf)}
+.link{font-weight:700;word-break:break-all}
+.steps{display:flex;flex-direction:column;gap:8px;margin:0;padding-left:22px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast.on{opacity:1}
+@media (max-width:560px){.flow{grid-template-columns:1fr}.row,.colhead{grid-template-columns:1fr 46px 1fr}.pick .nm{font-size:18px}
+  .m3{grid-template-columns:repeat(2,minmax(0,1fr))}.m3 .mid{display:none}.how .alt{padding-left:0}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="strands"><span class="tag light">광합성 역사</span><span class="tag resp">세포호흡 역사</span><span class="tag both">둘을 비교</span></div>
+    <h1>빛과 호흡의 과학사</h1>
+    <p class="lead">광합성과 세포호흡은 어떻게 밝혀졌을까? 과학자 한 명을 골라 <strong>자료 PDF를 내려받고</strong>, 내 Gemini Notebook(NotebookLM)에 올려 <strong>인포그래픽이나 슬라이드</strong>를 만든다. 그다음 제미나이로 검증하고 패들렛에 올려 함께 본다.</p>
+    <div class="flow">
+      <div><b>도입 · 7분</b><span>영상: 세포호흡과 광합성은 어떤 관계일까</span></div>
+      <div><b>전개 · 28분</b><span>주제 고르기 → PDF 올리기 → 만들기 → 검증 → 패들렛</span></div>
+      <div><b>정리 · 10분</b><span>함께 보기, 발표, 댓글, 자기 평가</span></div>
+    </div>
+    <nav class="map" aria-label="단계 바로 가기">
+      <a href="#s1">1 주제·PDF</a><a href="#s2">2 노트북에 올리기</a><a href="#s3">3 만들기</a><a href="#s4">4 검증</a><a href="#s5">5 패들렛</a><a href="#s6">6 함께 보기</a>
+    </nav>
+  </header>
+
+  <section id="s1">
+    <h2><span class="no">1단계</span>주제를 고르고 PDF 내려받기</h2>
+    <p>13개 가운데 하나를 누른다. 친구와 겹쳐도 괜찮다. 왼쪽은 광합성, 오른쪽은 세포호흡의 역사이고 위에서 아래로 시간 순서다.</p>
+    <div class="colhead"><span class="l">광합성</span><span></span><span class="r">세포호흡</span></div>
+    <div class="tl" id="tl"></div>
+    <div class="empty" id="nochoice">위에서 주제를 누르면 여기에 <strong>PDF 내려받기</strong> 단추가 나타납니다.</div>
+    <div class="chosen" id="chosen" hidden>
+      <span class="tag" id="ch-tag"></span>
+      <div class="who" id="ch-who"></div>
+      <p id="ch-hook" class="alt"></p>
+      <div class="btns">
+        <a class="b main" id="b-pdf" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>PDF 내려받기</a>
+        <button class="b" id="b-read" type="button" aria-expanded="false">미리 읽기</button>
+      </div>
+      <p class="file">파일 이름: <span id="ch-file"></span></p>
+      <p class="alt">PDF가 새 창에서 열리면 화면의 <strong>다운로드(↓)</strong> 또는 <strong>공유 → 파일에 저장</strong>을 누른다. 내려받기가 안 되면 패들렛 맨 앞 '자료실' 칸에서 같은 파일을 받는다.</p>
+      <div class="doc" id="ch-doc" hidden></div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="no">2단계</span>내 노트북을 만들고 PDF 올리기</h2>
+    <ol class="how">
+      <li><div class="t">Gemini Notebook(NotebookLM)에 들어가 <span>+ 새 노트북</span>을 누른다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mbar"><span class="mlogo"><i></i>Gemini Notebook</span><span class="mtab">전체</span><span class="mtab on">내 노트북</span><span class="msp"></span><span class="mbtn hl" data-tip="여기!">+ 새 노트북</span></div>
+          <div class="mbody"><b>내 노트북</b><div class="mcards"><div class="new">+</div><div></div><div></div></div></div>
+        </div>
+        <p class="alt">주소: notebooklm.google.com (학교 구글 계정으로 로그인). 휴대폰 앱이면 아래쪽의 + 단추.</p></li>
+      <li><div class="t">소스 추가 창에서 <span>파일 업로드</span>를 누르고, 1단계에서 받은 PDF를 고른다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mdlg">
+            <h4>사용자의 문서를 활용해 AI 오디오 및 동영상 오버뷰 만들기</h4>
+            <div class="msearch">웹에서 새 소스를 검색하세요</div>
+            <div class="mchips"><span class="hl left" data-tip="PDF 올리기">파일 업로드</span><span>웹사이트</span><span>Drive</span><span>복사된 텍스트</span></div>
+            <div class="mdrop">업로드할 파일을 드래그 앤 드롭하세요 (PDF, 이미지, 문서…)</div>
+          </div>
+        </div>
+        <p class="alt">새 노트북을 만들면 이 창이 저절로 뜬다. 안 뜨면 왼쪽 '출처'의 <strong>+ 소스 추가</strong>를 누른다. 휴대폰은 '다운로드' 폴더에서 PDF를 찾는다.</p></li>
+      <li><div class="t">왼쪽 '출처'에 PDF가 들어갔는지 확인하고, 노트북 제목을 바꾼다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mbar"><span class="mlogo"><i></i><span class="hl left" data-tip="제목 누르고 바꾸기" id="mk-title">[과학자] 내 이름</span></span></div>
+          <div class="m3">
+            <div class="mp"><b>출처</b><span class="mpill">+ 소스 추가</span><span class="msrc hl left" data-tip="올라온 PDF" id="mk-src">P1_프리스틀리.pdf</span></div>
+            <div class="mp mid"><b>채팅</b><span class="alt">소스 1개</span></div>
+            <div class="mp"><b>스튜디오</b><div class="mgrid"><span>슬라이드 자료</span><span>인포그래픽</span></div></div>
+          </div>
+        </div>
+        <p class="alt">제목 예: <strong id="ex-title">[1779 잉엔하우스] 김가온</strong></p></li>
+    </ol>
+    <div class="note ok">
+      <strong>자료를 더 넣어도 좋다</strong>
+      <span>선생님이 준 PDF 말고도 관련 자료를 소스로 더 올려도 된다. '+ 소스 추가'에서 웹사이트 주소를 넣거나 '웹에서 새 소스를 검색하세요'(Fast Research)로 찾아 넣을 수 있다.</span>
+      <span>교과서·논문·노벨상 누리집(nobelprize.org)·대학·박물관·백과사전처럼 <strong>믿을 만한 곳</strong>의 자료를 고르고, 개인 블로그나 출처를 알 수 없는 글은 넣지 않는다. 자료가 많아질수록 4단계 검증이 더 중요하다.</span>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="no">3단계</span>인포그래픽이나 슬라이드 만들기</h2>
+    <ol class="how">
+      <li><div class="t">오른쪽 '스튜디오'에서 <span>인포그래픽</span> 또는 <span>슬라이드 자료</span> 오른쪽의 연필(맞춤설정)을 누른다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mbody"><b>스튜디오</b>
+            <div class="mgrid">
+              <span>AI 오디오 오버뷰</span><span class="hl" data-tip="또는 여기">슬라이드 자료<svg class="pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg></span>
+              <span>동영상 개요</span><span>마인드맵</span>
+              <span>보고서</span><span>플래시카드</span>
+              <span>퀴즈</span><span class="hl" data-tip="여기!">인포그래픽<svg class="pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <p class="alt">연필이 안 보이면 이름 위에 손가락(마우스)을 올리거나 길게 누른다. 휴대폰 앱은 아래쪽 '스튜디오' 탭. 동영상은 하고 싶은 사람만(시간이 더 걸린다).</p></li>
+      <li><div class="t">설명 칸에 아래 지시문을 붙여 넣고 <span>생성</span>을 누른다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mdlg"><h4>인포그래픽 맞춤설정</h4><div class="mtext hl left" data-tip="지시문 붙여 넣기">만들려는 인포그래픽을 설명하세요</div><div class="mrow"><span class="alt">언어: 한국어</span><span class="mbtn">생성</span></div></div>
+        </div>
+        <div class="pbox">
+          <div class="tabs" role="tablist" id="kind-tabs">
+            <button role="tab" aria-selected="true" data-k="info" type="button">인포그래픽</button>
+            <button role="tab" aria-selected="false" data-k="slide" type="button">슬라이드</button>
+            <button role="tab" aria-selected="false" data-k="video" type="button">동영상(선택)</button>
+          </div>
+          <div class="prompt" id="p-make"></div>
+          <div class="btns"><button class="b main" type="button" data-copy="p-make">지시문 복사</button></div>
+        </div></li>
+      <li><div class="t">다 되면 결과물의 <span>⋮</span> 메뉴에서 <span>다운로드</span>로 저장한다.</div>
+        <div class="mock" aria-hidden="true">
+          <div class="mbody"><div class="mout"><span class="ic"></span><span><b>인포그래픽</b><br><span class="alt">소스 1개 · 방금</span></span>
+            <span class="mmenu"><span>이름 바꾸기</span><span class="hl" data-tip="저장">다운로드</span><span>삭제</span></span></div></div>
+        </div>
+        <p class="alt">인포그래픽은 그림(PNG), 슬라이드는 PDF로 저장된다. 만드는 데 몇 분 걸리니 기다리는 동안 4단계 지시문을 미리 복사해 둔다.</p></li>
+    </ol>
+  </section>
+
+  <section id="s4">
+    <h2><span class="no">4단계</span>제미나이로 오류 검증하기</h2>
+    <p>AI가 만든 자료에는 틀린 연도, 바뀐 실험 순서, 잘못된 용어가 섞일 수 있다. 제미나이에게 <strong>검사만</strong> 맡기고, 고칠지는 내가 판단한다.</p>
+    <ol class="steps">
+      <li>제미나이(gemini.google.com)를 열고 3단계에서 저장한 그림이나 PDF를 올린다.</li>
+      <li>아래 지시문을 붙여 넣는다.</li>
+      <li>제미나이가 틀렸다고 한 곳을 <strong>1단계 PDF</strong>(또는 내가 더 넣은 믿을 만한 자료)에서 직접 확인한다. 제미나이도 틀릴 수 있다.</li>
+      <li>정말 틀렸으면 3단계 지시문 끝에 "○○를 바르게 고쳐서"를 더해 다시 만들거나, 패들렛 글의 <strong>검증 메모</strong>에 바로잡은 내용을 적는다.</li>
+    </ol>
+    <div class="prompt" id="p-check"></div>
+    <div class="btns"><button class="b main" type="button" data-copy="p-check">검증 지시문 복사</button></div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="no">5단계</span>패들렛에 올리기</h2>
+    <p>패들렛: <span id="pd-link" class="link"></span></p>
+    <ol class="steps">
+      <li>내 과학자의 <strong>연도 칸</strong>에서 + 를 눌러 글을 쓴다.</li>
+      <li>제목과 본문을 아래 틀대로 쓰고, 저장한 파일(그림·PDF·영상)을 첨부한다.</li>
+    </ol>
+    <div class="prompt" id="p-post"></div>
+    <div class="btns"><button class="b main" type="button" data-copy="p-post">글 틀 복사</button></div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="no">6단계</span>함께 보고 평가하기</h2>
+    <ol class="steps">
+      <li>다른 친구의 글을 <strong>2개 이상</strong> 본다. 광합성을 골랐다면 세포호흡 쪽, 세포호흡을 골랐다면 광합성 쪽을 하나 이상 포함한다.</li>
+      <li>댓글로 <strong>우수한 점 1가지 + 궁금한 점 1가지</strong>를 남긴다.</li>
+      <li>발표자로 뽑히면 1분 동안 "관찰 → 가설 → 실험 → 결론"을 말한다.</li>
+    </ol>
+    <h3>자기 평가</h3>
+    <ul class="check" id="self">
+      <li><label><input type="checkbox" id="c1">과학자가 수행한 실험을 관찰·가설·실험·결론 순서로 충실히 조사했다.</label></li>
+      <li><label><input type="checkbox" id="c2">조사한 내용을 바탕으로 알아보기 쉬운 시각화 자료를 만들었다.</label></li>
+      <li><label><input type="checkbox" id="c3">AI가 만든 내용을 그대로 믿지 않고 자료와 대조해 검증했다.</label></li>
+      <li><label><input type="checkbox" id="c4">다른 친구의 자료를 보고 존중하는 말로 댓글을 남겼다.</label></li>
+      <li><label><input type="checkbox" id="c5">내 과학자의 연구가 세포호흡 또는 광합성의 어느 부분을 밝혔는지 말할 수 있다.</label></li>
+    </ul>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const DATA = {"padlet": "", "topics": [{"id": "P1", "kind": "light", "year": 1771, "ylab": "1771", "name": "프리스틀리", "hook": "식물은 나빠진 공기를 되살린다", "html": "<h3>[광합성 역사 1] 프리스틀리 — 식물은 '나빠진 공기'를 되살린다 (1771~1772)<\/h3>\n<ul><li class=''>과학자: 조지프 프리스틀리(Joseph Priestley, 1733~1804), 영국의 목사이자 화학자<\/li><li class=''>핵심 한 줄: 촛불이 꺼지고 생쥐가 살 수 없게 된 밀폐 공기에 <strong>살아 있는 식물(박하)<\/strong> 을 두면, 며칠 뒤 그 공기에서 다시 촛불이 타고 생쥐가 살 수 있었다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>18세기 사람들은 공기를 한 가지 물질이라고 여겼고, 물질이 탈 때 '플로지스톤'이라는 것이 빠져나간다고 생각했다(플로지스톤설).<\/li><li class=''>촛불을 밀폐한 유리병 속에서 태우거나 동물이 숨을 쉬면 공기가 '나빠져서' 더는 불이 타지 않고 동물이 살 수 없다는 것은 알려져 있었다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>불과 동물의 호흡은 계속 공기를 나쁘게 만드는데, 왜 지구의 공기는 나빠지지 않을까?<\/li><li class=''>자연에는 공기를 다시 좋게 만드는 무언가가 있지 않을까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>식물이 동물·불과 반대로 공기를 '되살리는(회복시키는)' 일을 할 것이다.<\/li><\/ul>\n<h4>4. 실험 (1771년 여름 ~ 1772년)<\/h4>\n<ol><li class=''>밀폐한 유리병 안에서 촛불을 태워 저절로 꺼지게 한다(공기가 '나빠짐').<\/li><li class=''>그 병 안에 박하(민트) 가지를 넣고 며칠~열흘 정도 둔다.<\/li><li class=''>다시 촛불을 넣어 보거나, 생쥐를 넣어 살 수 있는지 본다.<\/li><li class=''>비교: 식물을 넣지 않은 '나빠진 공기'에서는 촛불이 바로 꺼지고 생쥐가 살지 못했다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>식물과 함께 둔 공기에서는 다시 촛불이 타고 생쥐가 살 수 있었다.<\/li><li class=''>결론: <strong>식물은 동물의 호흡이나 연소로 나빠진 공기를 회복시킨다.<\/strong><\/li><li class=''>1772년 영국 왕립학회 학술지에 발표했다. 친구 벤저민 프랭클린은 편지에서 이 발견이 \"숲을 함부로 베어서는 안 되는 이유\"가 된다고 답했다.<\/li><\/ul>\n<h4>6. 한계와 그 뒤<\/h4>\n<ul><li class=''>프리스틀리는 <strong>빛이 필요하다는 것<\/strong>을 알아차리지 못했다. 그래서 같은 실험을 해도 결과가 들쭉날쭉했다(어두운 곳에 두면 실패) → 이 수수께끼는 잉엔하우스가 풀었다.<\/li><li class=''>1774년 프리스틀리는 산화 수은을 가열해 '불이 더 잘 타는 공기'를 얻었다(오늘날의 <strong>산소<\/strong>). 그는 이것을 '탈플로지스톤 공기'라고 불렀고, 산소라는 이름과 올바른 해석은 라부아지에가 붙였다.<\/li><\/ul>\n<h4>7. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>촛불·생쥐가 공기에서 <strong>산소(O₂)를 쓰고 이산화 탄소(CO₂)를 내놓은 것<\/strong>을, 식물이 광합성으로 <strong>CO₂를 흡수하고 O₂를 내놓아<\/strong> 되돌린 것이다.<\/li><li class=''>광합성의 생성물(O₂)과 세포호흡의 재료(O₂)가 연결된다는 것을 처음 보여 준 실험이다.<\/li><\/ul>\n<h4>8. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>프리스틀리는 '광합성'이라는 말을 쓰지 않았고, 산소·이산화 탄소라는 개념도 없었다. \"프리스틀리가 광합성을 발견했다\"보다 \"식물이 공기를 회복시킨다는 것을 처음 실험으로 보였다\"가 정확하다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Priestley, J. (1772). Observations on different kinds of air. <em>Philosophical Transactions of the Royal Society of London<\/em>, 62, 147–264.<\/li><li class=''>Priestley, J. (1774~1777). <em>Experiments and Observations on Different Kinds of Air<\/em> (전 3권). 원문: Project Gutenberg <a href=\"https://www.gutenberg.org/ebooks/29734\" target=\"_blank\" rel=\"noopener\">https://www.gutenberg.org/ebooks/29734<\/a><\/li><li class=''>벤저민 프랭클린이 프리스틀리에게 쓴 편지(1772년 7월), Founders Online(미국 국립기록관리청): <a href=\"https://founders.archives.gov/documents/Franklin/01-19-02-0147\" target=\"_blank\" rel=\"noopener\">https://founders.archives.gov/documents/Franklin/01-19-02-0147<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P1_프리스틀리.pdf"}, {"id": "P2", "kind": "light", "year": 1779, "ylab": "1779", "name": "잉엔하우스", "hook": "빛과 초록색 부분이 필요하다", "html": "<h3>[광합성 역사 2] 잉엔하우스 — 공기를 되살리려면 '빛'과 '초록색 부분'이 필요하다 (1779)<\/h3>\n<ul><li class=''>과학자: 얀 잉엔하우스(Jan Ingenhousz, 1730~1799), 네덜란드 출신 의사(영국·오스트리아에서 활동)<\/li><li class=''>핵심 한 줄: 식물이 공기를 깨끗하게 만드는 일은 <strong>햇빛이 있을 때, 잎과 줄기의 초록색 부분에서만<\/strong> 일어난다. 어둠 속에서는 식물도 동물처럼 공기를 나쁘게 만든다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>프리스틀리가 \"식물이 나빠진 공기를 회복시킨다\"고 발표했지만, 다른 사람이 따라 하면 성공할 때도 있고 실패할 때도 있었다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>왜 같은 실험이 어떤 때는 되고 어떤 때는 안 될까? 식물의 어떤 조건이 결과를 바꿀까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>빛(햇빛)이 있어야 식물이 공기를 회복시킬 것이다. 또 식물 전체가 아니라 특정 부분(초록색 부분)이 이 일을 할 것이다.<\/li><\/ul>\n<h4>4. 실험 (1779년 여름, 수백 번의 실험)<\/h4>\n<ol><li class=''>떼어 낸 잎을 물이 든 투명한 용기에 담가 햇빛 아래 둔다 → 잎 표면에 <strong>작은 기포<\/strong>가 생기는지 본다.<\/li><li class=''>같은 잎을 그늘이나 어두운 곳에 둔다 → 기포가 생기는지 비교한다.<\/li><li class=''>잎, 초록색 잎자루, 뿌리·꽃·열매처럼 <strong>초록색이 아닌 부분<\/strong>을 따로 물에 넣고 비교한다.<\/li><li class=''>모은 기체에 불씨를 넣거나 공기의 '좋음'을 재는 장치로 기체의 성질을 확인한다.<\/li><li class=''>잎만 따로 실험했기 때문에, 초록색 부분과 아닌 부분이 섞인 식물 전체로는 알기 어려운 사실을 구별할 수 있었다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>햇빛 아래의 초록색 잎에서는 기포(불을 잘 타게 하는 좋은 공기 = 오늘날의 산소)가 나왔다.<\/li><li class=''>어둠 속에서는 기포가 나오지 않았고, 식물이 오히려 공기를 나쁘게 만들었다(밤과 그늘).<\/li><li class=''>초록색이 아닌 부분(뿌리·꽃·열매)은 빛이 있든 없든 공기를 나쁘게 만들었다.<\/li><li class=''>결론: <strong>식물이 공기를 회복시키는 데는 빛이 꼭 필요하고, 그 일은 초록색 부분에서 일어난다.<\/strong> 열이 아니라 빛이 중요하다는 것도 보였다.<\/li><li class=''>1779년 책 『식물에 관한 실험: 햇빛 속에서는 공기를 깨끗하게 하고 그늘과 밤에는 해롭게 하는 식물의 큰 힘을 밝힘』으로 발표했다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>햇빛 아래 초록색 부분에서는 <strong>광합성<\/strong>(O₂ 방출)이 세포호흡보다 많이 일어나고,<\/li><li class=''>어둠 속이나 초록색이 아닌 부분에서는 <strong>세포호흡<\/strong>(O₂ 사용, CO₂ 방출)만 일어난다.<\/li><li class=''>즉 식물도 <strong>항상 세포호흡을 한다<\/strong>. 광합성은 빛이 있을 때 엽록체가 있는 부분에서만 일어난다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>\"식물은 낮에는 광합성, 밤에는 호흡만 한다\"는 반만 맞다. 식물은 낮에도 세포호흡을 하지만, 빛이 충분하면 광합성이 더 많아서 겉으로는 O₂를 내놓는 것처럼 보인다.<\/li><li class=''>잉엔하우스는 식물이 무게를 늘리는 데 필요한 탄소가 공기에서 온다는 것까지 정확히 증명하지는 못했다(→ 세네비에, 소쉬르).<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Ingenhousz, J. (1779). <em>Experiments upon Vegetables, Discovering Their Great Power of Purifying the Common Air in the Sun-shine, and of Injuring It in the Shade and at Night.<\/em> London: P. Elmsly and H. Payne.<\/li><li class=''>Gest, H. (1997). A 'misplaced chapter' in the history of photosynthesis research; the second publication (1796) on plant processes by Dr Jan Ingen-Housz. <em>Photosynthesis Research<\/em>, 53, 65–72. 원문(일리노이대 Govindjee 교수 누리집): <a href=\"https://www.life.illinois.edu/govindjee/history/articles/GestOnIngenhousz_missing.pdf\" target=\"_blank\" rel=\"noopener\">https://www.life.illinois.edu/govindjee/history/articles/GestOnIngenhousz_missing.pdf<\/a><\/li><li class=''>브리태니커 백과사전 'Jan Ingenhousz': <a href=\"https://www.britannica.com/biography/Jan-Ingenhousz\" target=\"_blank\" rel=\"noopener\">https://www.britannica.com/biography/Jan-Ingenhousz<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P2_잉엔하우스.pdf"}, {"id": "P3", "kind": "light", "year": 1782, "ylab": "1782", "name": "세네비에", "hook": "이산화 탄소가 재료다", "html": "<h3>[광합성 역사 3] 세네비에 — 식물이 산소를 내려면 '고정 공기(이산화 탄소)'가 필요하다 (1782)<\/h3>\n<ul><li class=''>과학자: 장 세네비에(Jean Senebier, 1742~1809), 스위스 제네바의 목사이자 식물생리학자<\/li><li class=''>핵심 한 줄: 물속 잎이 햇빛에서 '좋은 공기(산소)'를 내놓으려면, 물에 <strong>'고정 공기'(오늘날의 이산화 탄소, CO₂)<\/strong> 가 녹아 있어야 한다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>잉엔하우스는 빛과 초록색 부분이 필요하다는 것을 밝혔다. 그러나 식물이 무엇을 '재료'로 받아들여 좋은 공기를 만드는지는 몰랐다.<\/li><li class=''>당시 '고정 공기(fixed air)'라고 불린 기체(오늘날의 CO₂)가 알려져 있었다. 이것은 석회수를 뿌옇게 하고, 동물의 숨이나 불에서 나오는 기체였다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>빛이 있어도 물속 잎에서 기포가 잘 나올 때와 안 나올 때가 있다. 물의 어떤 성분이 영향을 줄까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>식물은 '고정 공기'를 받아들여야 좋은 공기를 내놓을 수 있다. 즉 고정 공기가 좋은 공기를 만드는 재료다.<\/li><\/ul>\n<h4>4. 실험<\/h4>\n<ol><li class=''>잎을 물에 넣고 햇빛에 두되, 물을 두 가지로 준비한다.<\/li><li class='sub'>㉠ 고정 공기를 녹인(또는 원래 녹아 있는) 물<\/li><li class='sub'>㉡ 끓여서 녹아 있던 기체를 날려 버린 물(고정 공기가 없음)<\/li><li class=''>두 조건에서 잎이 내놓는 기포(좋은 공기)의 양을 비교한다.<\/li><li class=''>고정 공기를 더 많이 녹인 물에서는 어떻게 되는지도 본다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>고정 공기가 없는 물(끓인 물)에서는 햇빛을 받아도 좋은 공기가 거의 나오지 않았다.<\/li><li class=''>고정 공기를 녹여 주면 좋은 공기가 다시 나왔고, 많이 녹일수록 더 많이 나왔다.<\/li><li class=''>결론: <strong>식물이 빛 속에서 좋은 공기를 내놓을 때는 고정 공기(CO₂)를 사용(흡수)한다.<\/strong><\/li><li class=''>1782년 『물리·화학 논문집(Mémoires physico-chimiques)』 등에 발표했다.<\/li><\/ul>\n<h4>6. 한계와 그 뒤<\/h4>\n<ul><li class=''>세네비에는 식물이 CO₂를 주로 <strong>뿌리로 흡수한 물이나 이슬에 녹은 것<\/strong>에서 얻는다고 생각했다. → 소쉬르가 식물이 <strong>공기 중의 CO₂를 직접<\/strong> 흡수한다는 것을 보여 이를 바로잡았다.<\/li><li class=''>그는 빛이 식물에 미치는 효과를 오랫동안 연구해, 빛과 식물 생리학 연구의 기초를 놓았다.<\/li><\/ul>\n<h4>7. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>광합성의 재료는 <strong>CO₂<\/strong>다. CO₂가 없으면 빛이 있어도 탄소고정반응이 일어나지 못하고, 결국 O₂도 거의 나오지 않는다.<\/li><li class=''>학교 실험에서 검정말을 <strong>탄산수소 나트륨(NaHCO₃) 용액<\/strong>에 넣는 이유도 물에 CO₂를 공급하기 위해서다.<\/li><\/ul>\n<h4>8. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>광합성에서 나오는 O₂는 CO₂가 쪼개져서 나온 것이 아니라 <strong>물(H₂O)이 분해되어<\/strong> 나온 것이다(1941년 루벤·케이멘의 산소 동위원소(¹⁸O) 실험). 세네비에의 시대에는 이 사실을 알 수 없었다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Senebier, J. (1782). <em>Mémoires physico-chymiques sur l'influence de la lumière solaire pour modifier les êtres des trois règnes de la nature, et surtout ceux du règne végétal<\/em> (3 vols.). Genève: Barthélemi Chirol.<\/li><li class=''>Ruben, S., Randall, M., Kamen, M., &amp; Hyde, J. L. (1941). Heavy oxygen (O18) as a tracer in the study of photosynthesis. <em>Journal of the American Chemical Society<\/em>, 63, 877–879.<\/li><li class=''>EBSCO Research Starters 'Ingenhousz Discovers Photosynthesis'(세네비에의 기여 포함): <a href=\"https://ebsco.com/research-starters/history/ingenhousz-discovers-photosynthesis\" target=\"_blank\" rel=\"noopener\">https://ebsco.com/research-starters/history/ingenhousz-discovers-photosynthesis<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P3_세네비에.pdf"}, {"id": "R1", "kind": "resp", "year": 1783, "ylab": "1783", "name": "라부아지에", "hook": "호흡은 몸속의 느린 연소", "html": "<h3>[세포호흡 역사 1] 라부아지에 — 호흡은 몸속에서 일어나는 '느린 연소'다 (1783)<\/h3>\n<ul><li class=''>과학자: 앙투안 라부아지에(Antoine Lavoisier, 1743~1794), 프랑스의 화학자. 수학자 피에르 시몽 라플라스(Pierre-Simon Laplace)와 함께 실험<\/li><li class=''>핵심 한 줄: 기니피그가 숨 쉬며 내는 <strong>열<\/strong>과 <strong>이산화 탄소<\/strong>의 비율이 숯이 탈 때와 거의 같았다 → <strong>동물의 호흡은 숯이 타는 것과 같은 종류의 반응(느린 연소)<\/strong> 이다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>프리스틀리가 '불이 더 잘 타는 공기'를 얻었고(1774), 라부아지에는 이 기체가 연소에 쓰이는 원소임을 밝혀 <strong>산소(oxygène)<\/strong> 라는 이름을 붙였다. 이로써 '플로지스톤설'이 무너지기 시작했다.<\/li><li class=''>동물이 왜 따뜻한지(체온)는 오래된 수수께끼였다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>숯이 탈 때도, 동물이 숨 쉴 때도 산소가 쓰이고 '고정 공기(CO₂)'가 나오며 열이 난다.<\/li><li class=''>그렇다면 동물의 체온은 몸속에서 일어나는 연소 때문일까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>동물의 호흡은 연소와 같은 화학 반응이다. 그렇다면 같은 양의 CO₂를 만들 때 나오는 열의 양도 숯의 연소와 비슷할 것이다.<\/li><\/ul>\n<h4>4. 실험 (1782~1783년 겨울)<\/h4>\n<ol><li class=''><strong>얼음 열량계<\/strong>를 만든다: 가운데 칸을 얼음으로 둘러싸, 안에서 나온 열이 얼음을 녹이게 한다. 녹은 물의 무게를 재면 나온 열의 양을 알 수 있다.<\/li><li class=''>가운데 칸에 <strong>살아 있는 기니피그<\/strong>를 약 10시간 넣어 두고, 녹은 얼음의 양을 잰다(동물이 낸 열).<\/li><li class=''>같은 기니피그를 다른 용기에 넣어 같은 시간 동안 내놓는 <strong>CO₂의 양<\/strong>을 잰다.<\/li><li class=''><strong>숯을 태워<\/strong> 같은 양의 CO₂가 나올 때 얼음이 얼마나 녹는지 잰다.<\/li><li class=''>'같은 양의 CO₂를 만들 때 나오는 열'을 동물과 숯에서 비교한다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>같은 양의 CO₂를 만들 때 동물과 숯에서 나온 열의 양이 <strong>비슷했다<\/strong>(동물이 조금 더 많았는데, 실험 오차와 당시 몰랐던 다른 반응 때문으로 본다).<\/li><li class=''>결론: <strong>호흡은 몸 안에서 천천히 일어나는 연소이며, 체온의 원천이다.<\/strong> 숨 쉬며 들이마신 산소가 몸속의 탄소(와 수소)와 결합해 CO₂(와 물)가 되고 열이 난다.<\/li><li class=''>1783년 라플라스와 함께 프랑스 과학 아카데미에 『열에 관한 논문(Mémoire sur la chaleur)』으로 발표했다.<\/li><li class=''>1789~1790년에는 동료 세갱(Seguin)을 대상으로, 일을 하거나 음식을 먹거나 추울 때 <strong>산소 소비량이 늘어난다<\/strong>는 것도 측정했다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>세포호흡의 전체 식: <strong>C₆H₁₂O₆ + 6O₂ + 6H₂O → 6CO₂ + 12H₂O + 에너지(ATP + 열)<\/strong><\/li><li class=''>연소와 다른 점: 세포호흡은 <strong>효소<\/strong>가 조절하는 여러 단계(해당 과정 → TCA 회로 → 전자전달계)로 <strong>천천히<\/strong> 일어나, 에너지의 일부를 <strong>ATP<\/strong>에 저장한다. 나머지는 열로 나와 체온 유지에 쓰인다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>라부아지에는 연소가 <strong>폐<\/strong>에서 일어난다고 생각했다. 실제로는 몸의 <strong>모든 세포(마이토콘드리아)<\/strong> 에서 일어난다는 것이 19세기 이후 밝혀졌다.<\/li><li class=''>라부아지에는 프랑스 혁명 때 세금 징수관이었다는 이유로 1794년 처형되었다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Lavoisier, A.-L., &amp; de Laplace, P.-S. (1784). Mémoire sur la chaleur. <em>Histoire de l'Académie royale des sciences (année 1780)<\/em>. Paris, 1784. (1783년 발표)<\/li><li class=''>스미스소니언 매거진 'The Father of Modern Chemistry Proved Respiration Occurred by Freezing a Guinea Pig': <a href=\"https://www.smithsonianmag.com/smart-news/father-modern-chemistry-proved-respiration-occurred-freezing-guinea-pig-180964596/\" target=\"_blank\" rel=\"noopener\">https://www.smithsonianmag.com/smart-news/father-modern-chemistry-proved-respiration-occurred-freezing-guinea-pig-180964596/<\/a><\/li><li class=''>West, J. B. (2013). The collaboration of Antoine and Marie-Anne Lavoisier and the first measurements of human oxygen consumption. <em>American Journal of Physiology – Lung Cellular and Molecular Physiology<\/em>, 305, L775–L785.<\/li><li class=''>비상교육 고등 『세포와 물질대사』 Ⅲ단원 01. 세포호흡<\/li><\/ul>", "pdf": "R1_라부아지에.pdf"}, {"id": "P4", "kind": "light", "year": 1804, "ylab": "1804", "name": "소쉬르", "hook": "무게를 재 보니 물도 재료", "html": "<h3>[광합성 역사 4] 소쉬르 — 무게를 재어 보니 '물'도 광합성의 재료였다 (1804)<\/h3>\n<ul><li class=''>과학자: 니콜라 테오도르 드 소쉬르(Nicolas-Théodore de Saussure, 1767~1845), 스위스의 화학자·식물생리학자<\/li><li class=''>핵심 한 줄: 식물이 늘어난 무게는 흡수한 이산화 탄소의 탄소 무게보다 <strong>더 컸다<\/strong> → 식물은 <strong>물(H₂O)<\/strong> 도 재료로 써서 몸을 만든다. 또 식물은 <strong>공기 중의 CO₂를 직접<\/strong> 흡수한다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>세네비에까지의 연구로 \"빛 + 초록색 부분 + 고정 공기(CO₂)\"가 필요하다는 것이 알려졌다.<\/li><li class=''>라부아지에 이후 화학자들은 물질의 <strong>무게(질량)를 정확히 재는 방법<\/strong>으로 화학 반응을 연구하기 시작했다. 소쉬르는 이 방법을 식물에 적용했다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>식물은 자라면서 무게가 늘어난다. 늘어난 무게는 어디서 왔을까? CO₂만으로 설명될까?<\/li><li class=''>식물은 CO₂를 물에서만 얻을까, 공기에서도 얻을까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>식물이 늘어난 무게는 공기 중에서 흡수한 CO₂(의 탄소)와 함께 <strong>물<\/strong>에서도 온다.<\/li><\/ul>\n<h4>4. 실험 (정량 실험)<\/h4>\n<ol><li class=''>식물을 유리 용기 안에 넣고, 공기 속 CO₂의 양을 정해 두고 햇빛에 둔다.<\/li><li class=''>실험 전후로 용기 속 기체의 <strong>부피와 성분(CO₂, O₂)<\/strong> 을 재고, 식물의 <strong>무게(마른 무게 포함)<\/strong> 와 탄소 함량을 잰다.<\/li><li class=''>흡수한 CO₂의 양, 내놓은 O₂의 양, 식물이 늘어난 무게를 서로 비교한다.<\/li><li class=''>뿌리를 통한 흡수와 잎을 통한 공기 흡수를 구별해 본다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>식물은 빛 속에서 <strong>공기 중의 CO₂를 흡수<\/strong>하고, 그와 비슷한 부피의 <strong>O₂를 내놓았다<\/strong>.<\/li><li class=''>식물이 늘어난 무게는 흡수한 CO₂에 들어 있던 <strong>탄소의 무게보다 컸다<\/strong>.<\/li><li class=''>결론: <strong>식물은 CO₂와 함께 물을 몸에 받아들여 유기물을 만든다.<\/strong> 식물은 공기에서 CO₂를 직접 얻는다(세네비에의 생각을 바로잡음).<\/li><li class=''>또한 식물도 동물처럼 산소를 들이마시는 호흡을 한다는 것, 질소·무기 염류는 흙(뿌리)에서 얻는다는 것도 보였다.<\/li><li class=''>1804년 책 『식물 생장에 관한 화학적 연구(Recherches chimiques sur la végétation)』로 발표했다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>광합성의 전체 식이 여기서 거의 완성된다: <strong>6CO₂ + 12H₂O + 빛 → C₆H₁₂O₆ + 6O₂ + 6H₂O<\/strong><\/li><li class=''>소쉬르는 \"물질이 얼마나 들어가고 얼마나 나오는가\"를 재는 <strong>정량적 방법<\/strong>으로 광합성을 연구한 첫 사람 가운데 하나다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>소쉬르는 늘어난 무게를 모두 물로 설명하려 했지만, 실제로는 흙에서 온 무기 염류(질소 등)도 일부 있다.<\/li><li class=''>\"광합성에서 나오는 O₂는 물에서 온다\"는 것은 소쉬르가 아니라 1941년 동위원소 실험이 밝혔다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>de Saussure, N.-T. (1804). <em>Recherches chimiques sur la végétation.<\/em> Paris: Nyon.<\/li><li class=''>브리태니커 백과사전 'Nicolas-Théodore de Saussure': <a href=\"https://www.britannica.com/biography/Nicolas-Theodore-de-Saussure\" target=\"_blank\" rel=\"noopener\">https://www.britannica.com/biography/Nicolas-Theodore-de-Saussure<\/a><\/li><li class=''>EBSCO Research Starters 'Saussure's Research on Plant Metabolism': <a href=\"https://www.ebsco.com/research-starters/history/saussures-research-plant-metabolism\" target=\"_blank\" rel=\"noopener\">https://www.ebsco.com/research-starters/history/saussures-research-plant-metabolism<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P4_소쉬르.pdf"}, {"id": "R2", "kind": "resp", "year": 1857, "ylab": "1857", "name": "파스퇴르", "hook": "발효는 산소 없는 삶", "html": "<h3>[세포호흡 역사 2] 파스퇴르 — 발효는 살아 있는 미생물이 '산소 없이 사는 방법'이다 (1857~1870년대)<\/h3>\n<ul><li class=''>과학자: 루이 파스퇴르(Louis Pasteur, 1822~1895), 프랑스의 화학자·미생물학자<\/li><li class=''>핵심 한 줄: 술·젖산이 만들어지는 <strong>발효는 살아 있는 효모·세균이 하는 일<\/strong>이며, 어떤 미생물은 <strong>산소 없이도<\/strong> 살 수 있다. 효모는 산소가 있으면 <strong>호흡<\/strong>을 하고, 없으면 <strong>발효<\/strong>를 한다.<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>당시 유명한 화학자(리비히 등)들은 발효를 <strong>죽어 가는 물질이 일으키는 단순한 화학 반응<\/strong>이라고 생각했다. 효모가 보이기는 하지만 원인이 아니라 우연히 있는 것이라고 보았다.<\/li><li class=''>프랑스 릴의 양조업자가 사탕무 술이 시큼하게 상하는 문제로 파스퇴르에게 도움을 청했다(1856).<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>현미경으로 보니 술이 잘 된 통에는 <strong>둥근 효모<\/strong>가, 상한 통에는 <strong>작은 막대 모양의 미생물<\/strong>이 많았다.<\/li><li class=''>발효의 종류(알코올, 젖산, 뷰티르산)마다 <strong>다른 미생물<\/strong>이 있는 것은 아닐까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>발효는 살아 있는 미생물이 일으키며, 발효의 종류마다 그것을 일으키는 미생물이 다르다.<\/li><\/ul>\n<h4>4. 실험<\/h4>\n<ol><li class=''><strong>젖산 발효(1857)<\/strong>: 젖산 발효가 일어나는 액체에서 미생물을 조금 떼어 새 당 용액에 옮기면, 그 용액에서도 젖산 발효가 일어나고 미생물이 늘어난다.<\/li><li class=''><strong>알코올 발효(1860)<\/strong>: 효모를 당과 무기 염류만 있는 용액에 넣어도 효모가 자라며 알코올과 CO₂를 만든다 → 죽은 물질이 아니라 <strong>효모의 생명 활동<\/strong>이 원인이다.<\/li><li class=''><strong>산소 없이 사는 생물(1861)<\/strong>: 뷰티르산 발효를 일으키는 세균은 공기(산소)를 불어 넣으면 움직임을 멈추고, 산소가 없을 때 오히려 잘 산다. 파스퇴르는 이런 생물을 <strong>혐기성(anaérobie)<\/strong>, 산소가 필요한 생물을 <strong>호기성(aérobie)<\/strong> 이라고 이름 붙였다.<\/li><li class=''><strong>산소의 효과(1861)<\/strong>: 효모를 산소가 많은 조건과 없는 조건에서 길러 비교한다 → 산소가 있으면 효모가 <strong>훨씬 많이 자라지만<\/strong> 당 1g당 만드는 알코올은 적고, 산소가 없으면 자라는 양은 적지만 당을 많이 써서 알코올을 많이 만든다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>결론 1: <strong>발효는 살아 있는 미생물의 활동<\/strong>이다. 발효마다 서로 다른 미생물이 있다.<\/li><li class=''>결론 2: 어떤 생물은 산소 없이 살며, 이때 에너지를 얻는 방법이 발효다. 파스퇴르는 이를 <strong>\"발효는 공기 없는 삶(la vie sans air)이다\"<\/strong> 라고 표현했다(1870년대 맥주 연구서 등).<\/li><li class=''>결론 3: 산소가 있으면 효모는 발효를 줄이고 산소를 쓰는 방식(오늘날의 <strong>세포호흡<\/strong>)으로 바꾼다 → 훗날 이 현상을 <strong>'파스퇴르 효과'<\/strong> 라고 부르게 되었다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>효모는 산소가 있으면 <strong>세포호흡<\/strong>(포도당 1분자당 ATP 약 30여 개), 없으면 <strong>알코올 발효<\/strong>(포도당 1분자당 ATP 2개)를 한다.<\/li><li class=''>발효는 ATP를 적게 만들기 때문에, 산소가 없으면 같은 양의 에너지를 얻으려고 <strong>포도당을 훨씬 많이 써야<\/strong> 한다 → 파스퇴르가 본 \"자라는 양은 적은데 당은 많이 쓴다\"는 결과가 이것이다.<\/li><li class=''>지난 시간에 배운 발효와 세포호흡의 차이를 처음 실험으로 보인 연구다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>파스퇴르는 '생명체가 있어야 발효가 된다'고 보았지만, 1897년 부흐너는 <strong>세포를 깨뜨린 즙(효소)만으로도<\/strong> 발효가 된다는 것을 보였다(→ 부흐너 주제). 두 연구는 서로 반대가 아니라 \"발효는 세포 안의 <strong>효소<\/strong>가 일으킨다\"로 이어진다.<\/li><li class=''>ATP, 효소, 마이토콘드리아는 파스퇴르 시대에는 알려지지 않았다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Pasteur, L. (1857). Mémoire sur la fermentation appelée lactique. <em>Comptes rendus de l'Académie des sciences<\/em>, 45, 913–916.<\/li><li class=''>Pasteur, L. (1861). Animalcules infusoires vivant sans gaz oxygène libre et déterminant des fermentations. <em>Comptes rendus<\/em>, 52, 344–347.<\/li><li class=''>Pasteur, L. (1876). <em>Études sur la bière.<\/em> Paris: Gauthier-Villars.<\/li><li class=''>파스퇴르 연구소 누리집 'The middle years 1862–1877': <a href=\"https://www.pasteur.fr/en/institut-pasteur/history/middle-years-1862-1877\" target=\"_blank\" rel=\"noopener\">https://www.pasteur.fr/en/institut-pasteur/history/middle-years-1862-1877<\/a><\/li><li class=''>브리태니커 백과사전 'Louis Pasteur': <a href=\"https://www.britannica.com/biography/Louis-Pasteur\" target=\"_blank\" rel=\"noopener\">https://www.britannica.com/biography/Louis-Pasteur<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 Ⅲ단원 02. 발효<\/li><\/ul>", "pdf": "R2_파스퇴르.pdf"}, {"id": "R3", "kind": "resp", "year": 1897, "ylab": "1897", "name": "부흐너", "hook": "세포 없이도 발효, 효소의 발견", "html": "<h3>[세포호흡 역사 3] 부흐너 — 살아 있는 세포 없이도 발효가 일어난다: 효소의 발견 (1897)<\/h3>\n<ul><li class=''>과학자: 에두아르트 부흐너(Eduard Buchner, 1860~1917), 독일의 화학자. 형 한스 부흐너(Hans Buchner)의 연구실에서 함께 연구<\/li><li class=''>핵심 한 줄: 효모를 갈아 짜낸 <strong>세포 없는 즙(압착즙)<\/strong> 에 당을 넣자 <strong>알코올과 CO₂가 생겼다<\/strong> → 발효를 일으키는 것은 '생명력'이 아니라 세포 안의 <strong>효소(그는 '치마아제'라고 부름)<\/strong> 다.<\/li><li class=''>1907년 노벨 화학상<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>파스퇴르 이후 \"발효는 <strong>살아 있는 세포<\/strong>만이 할 수 있다\"는 생각이 널리 퍼졌다. 생명체에는 화학으로 설명할 수 없는 특별한 '생명력'이 있다는 생기론의 영향도 컸다.<\/li><li class=''>한편 위액의 펩신처럼 세포 밖에서도 작용하는 소화 물질(당시 '효소'라고 부르기 시작함)은 알려져 있었다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>효모 세포를 깨뜨려 그 안의 물질만 꺼내면, 그것만으로도 발효가 일어날까? 아니면 살아 있는 세포가 꼭 있어야 할까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>발효를 일으키는 것은 효모 세포 안에 들어 있는 <strong>화학 물질(효소)<\/strong> 이며, 세포가 죽어도 그 물질만 있으면 발효가 일어날 것이다.<\/li><\/ul>\n<h4>4. 실험 (1896~1897)<\/h4>\n<ol><li class=''>효모를 <strong>석영 모래와 규조토<\/strong>와 함께 갈아 세포벽을 깨뜨린다.<\/li><li class=''>갈아 낸 반죽을 천에 싸서 <strong>강한 압력으로 눌러 즙(압착즙)<\/strong> 을 짜낸다. 걸러서 살아 있는 효모 세포가 없게 한다.<\/li><li class=''>이 즙에 <strong>진한 설탕(당) 용액<\/strong>을 넣는다. (즙이 상하지 않게 보존하려고 진한 설탕을 넣었다가 거품을 보고 발효를 알아챘다는 일화가 전해진다.)<\/li><li class=''>거품(CO₂)이 생기는지, 알코올이 만들어지는지 확인한다.<\/li><li class=''>비교: 즙을 가열하면 어떻게 되는지, 살아 있는 세포가 정말 없는지(세균 오염 등)를 확인한다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>세포가 없는 즙에서도 며칠 동안 <strong>CO₂ 거품과 알코올이 만들어졌다<\/strong>. 가열한 즙에서는 일어나지 않았다(단백질인 효소가 열에 변성됨).<\/li><li class=''>결론: <strong>알코올 발효는 효모 세포 안의 효소가 일으키는 화학 반응<\/strong>이다. 살아 있는 세포 자체가 꼭 필요한 것은 아니다.<\/li><li class=''>1897년 『세포 없는 알코올 발효(Alkoholische Gährung ohne Hefezellen)』로 발표했다.<\/li><\/ul>\n<h4>6. 그 뒤<\/h4>\n<ul><li class=''>하든과 영(1906)은 부흐너의 즙에 <strong>인산<\/strong>을 넣으면 발효가 빨라지고, 즙에는 열에 강한 작은 물질(조효소, 오늘날의 <strong>NAD⁺<\/strong> 등)도 필요하다는 것을 발견했다.<\/li><li class=''>이 '세포 없는 즙'으로 연구한 결과, 1930년대까지 포도당이 피루브산을 거쳐 알코올이 되는 <strong>해당 과정<\/strong>의 단계가 하나씩 밝혀졌다(엠덴, 마이어호프 등).<\/li><\/ul>\n<h4>7. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>세포호흡과 발효는 모두 <strong>효소가 조절하는 여러 단계의 화학 반응<\/strong>이다(교과서 114쪽: \"광합성과 세포호흡은 모두 효소의 촉매 작용으로 조절되는 일련의 산화환원반응\").<\/li><li class=''>부흐너의 실험은 <strong>생명 현상을 화학으로 연구하는 생화학<\/strong>이 시작된 출발점으로 꼽힌다.<\/li><li class=''>'치마아제'는 하나의 효소가 아니라 해당 과정과 알코올 발효에 관여하는 <strong>여러 효소의 혼합물<\/strong>이다.<\/li><\/ul>\n<h4>8. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>부흐너는 파스퇴르가 틀렸다고 보인 것이 아니다. 파스퇴르는 \"발효에는 효모가 필요하다\", 부흐너는 \"효모 안의 효소가 발효를 한다\"를 보였다. 함께 보면 <strong>\"발효는 세포 속 효소의 작용\"<\/strong> 이다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Buchner, E. (1897). Alkoholische Gährung ohne Hefezellen. <em>Berichte der deutschen chemischen Gesellschaft<\/em>, 30, 117–124.<\/li><li class=''>Buchner, E. (1907). Cell-free fermentation. Nobel Lecture, 11 December 1907. 노벨상 누리집: <a href=\"https://www.nobelprize.org/prizes/chemistry/1907/buchner/lecture/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1907/buchner/lecture/<\/a><\/li><li class=''>노벨상 누리집 1907년 화학상 'Eduard Buchner – Facts': <a href=\"https://www.nobelprize.org/prizes/chemistry/1907/buchner/facts/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1907/buchner/facts/<\/a><\/li><li class=''>Harden, A., &amp; Young, W. J. (1906). The alcoholic ferment of yeast-juice. <em>Proceedings of the Royal Society B<\/em>, 77, 405–420.<\/li><li class=''>비상교육 고등 『세포와 물질대사』 Ⅲ단원 02. 발효<\/li><\/ul>", "pdf": "R3_부흐너.pdf"}, {"id": "R4", "kind": "resp", "year": 1937, "ylab": "1937", "name": "크렙스", "hook": "비둘기 근육에서 찾은 TCA 회로", "html": "<h3>[세포호흡 역사 4] 크렙스 — 비둘기 가슴 근육에서 'TCA 회로'를 찾다 (1937)<\/h3>\n<ul><li class=''>과학자: 한스 아돌프 크렙스(Hans Adolf Krebs, 1900~1981), 독일 출신 영국의 생화학자. 대학원생 윌리엄 아서 존슨(William Arthur Johnson)과 함께 연구<\/li><li class=''>핵심 한 줄: 근육에 <strong>시트르산을 아주 조금<\/strong> 넣었는데 산소 소비가 그보다 <strong>훨씬 많이<\/strong> 늘었다 → 시트르산은 소모되는 연료가 아니라 <strong>계속 다시 만들어지는 회로의 일부<\/strong>다 → <strong>시트르산 회로(TCA 회로, 크렙스 회로)<\/strong>.<\/li><li class=''>1953년 노벨 생리의학상(프리츠 리프먼과 공동 수상)<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>1930년대에 해당 과정(포도당 → 피루브산)은 거의 밝혀졌다. 그러나 피루브산이 산소를 써서 <strong>CO₂와 물로 완전히 분해되는 길<\/strong>은 알 수 없었다.<\/li><li class=''>센트죄르지(Szent-Györgyi, 1935)는 숙신산·푸마르산·말산 같은 탄소 4개짜리 산을 근육에 <strong>조금만<\/strong> 넣어도 산소 소비가 크게 늘어난다는 것을 발견했다. 마치 <strong>촉매<\/strong>처럼 작용했다.<\/li><li class=''>크렙스는 나치의 박해를 피해 1933년 영국으로 옮겨 연구를 이어 갔다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>시트르산(탄소 6개)을 근육에 조금 넣어도 산소 소비가 크게 늘어났다. 이 산들은 어떤 순서로 서로 바뀌며, 피루브산의 분해와 어떻게 연결될까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>탄소 4개짜리 산(옥살아세트산)이 피루브산에서 온 탄소 2개와 결합해 <strong>시트르산(탄소 6개)<\/strong> 이 되고, 시트르산이 단계적으로 분해되며 CO₂를 내놓아 다시 <strong>옥살아세트산으로 돌아오는 회로<\/strong>가 있을 것이다.<\/li><\/ul>\n<h4>4. 실험<\/h4>\n<ol><li class=''><strong>잘게 다진 비둘기 가슴 근육<\/strong>을 사용한다(비행 근육이라 호흡이 매우 활발함).<\/li><li class=''><strong>와버그 검압계<\/strong>(밀폐 용기의 압력 변화로 산소 소비량을 재는 장치)로 근육의 산소 소비량을 잰다.<\/li><li class=''>시트르산 등 여러 유기산을 <strong>아주 적은 양<\/strong> 넣고 산소 소비가 얼마나 늘어나는지 잰다 → 넣은 산을 다 태우는 데 필요한 양보다 산소 소비가 훨씬 많이 늘어나면 '촉매처럼(회로로)' 작용한 것이다.<\/li><li class=''><strong>말론산<\/strong>(숙신산을 바꾸는 효소를 막는 물질)을 넣고 시트르산 등을 주면 어떤 물질이 쌓이는지 본다 → 회로의 순서를 알 수 있다.<\/li><li class=''>옥살아세트산과 피루브산을 함께 넣으면 <strong>시트르산이 만들어지는지<\/strong> 확인한다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>소량의 시트르산이 넣은 양으로 설명할 수 없을 만큼 <strong>많은 산소 소비<\/strong>를 일으켰다 → 시트르산이 계속 재생된다.<\/li><li class=''>말론산으로 한 단계를 막자 그 앞의 물질(숙신산)이 쌓였다 → 산들이 <strong>정해진 순서<\/strong>로 바뀐다.<\/li><li class=''>옥살아세트산 + 피루브산 → 시트르산이 만들어졌다 → 회로가 <strong>닫힌다<\/strong>.<\/li><li class=''>결론: 피루브산에서 온 탄소는 <strong>시트르산 → … → 숙신산 → 푸마르산 → 말산 → 옥살아세트산<\/strong>으로 이어지는 회로를 돌며 CO₂로 분해되고, 이때 빠져나온 수소(전자)가 산소에 전달된다.<\/li><li class=''>1937년 영국 『네이처』에 투고했으나 실을 지면이 없다는 이유로 거절되어, 네덜란드 학술지 『엔지몰로지아(Enzymologia)』에 발표했다. 이 논문은 훗날 노벨상을 받은 대표적인 '거절된 논문'으로 알려져 있다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>TCA 회로는 <strong>마이토콘드리아 기질<\/strong>에서 일어난다. 피루브산은 먼저 <strong>아세틸 CoA<\/strong>(탄소 2개)가 되어 회로에 들어간다(아세틸 CoA는 1950년대에 리프먼 등이 밝힘).<\/li><li class=''>회로를 한 바퀴 돌 때 CO₂ 2분자가 나오고, <strong>NADH·FADH₂<\/strong>와 ATP(기질수준인산화)가 만들어진다. NADH·FADH₂의 전자는 <strong>전자전달계<\/strong>로 가서 산소에 전달된다.<\/li><li class=''>출발 물질(옥살아세트산)이 다시 만들어진다는 점에서 광합성의 <strong>캘빈 회로<\/strong>(RuBP 재생)와 닮았다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>'TCA'는 트라이카복실산(tricarboxylic acid, 카복실기가 3개인 산 = 시트르산)의 줄임말이다. 시트르산 회로 = TCA 회로 = 크렙스 회로는 모두 같은 말이다.<\/li><li class=''>TCA 회로 자체는 산소를 직접 쓰지 않지만, NAD⁺·FAD를 다시 얻으려면 전자전달계가 돌아야 하므로 <strong>산소가 없으면 멈춘다<\/strong>.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Krebs, H. A., &amp; Johnson, W. A. (1937). The role of citric acid in intermediate metabolism in animal tissues. <em>Enzymologia<\/em>, 4, 148–156. (재수록: <em>FEBS Letters<\/em>, 117 Suppl., K1–K10, 1980)<\/li><li class=''>Krebs, H. A. (1953). The citric acid cycle. Nobel Lecture, 11 December 1953. 원문 PDF(노벨상 누리집): <a href=\"https://nobelprize.org/uploads/2018/06/krebs-lecture.pdf\" target=\"_blank\" rel=\"noopener\">https://nobelprize.org/uploads/2018/06/krebs-lecture.pdf<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 Ⅲ단원 01. 세포호흡(TCA 회로), 114쪽<\/li><\/ul>", "pdf": "R4_크렙스.pdf"}, {"id": "P5", "kind": "light", "year": 1950, "ylab": "1946~50s", "name": "캘빈", "hook": "방사성 탄소로 쫓은 탄소의 길", "html": "<h3>[광합성 역사 5] 캘빈 — 방사성 탄소로 'CO₂가 포도당이 되는 길'을 추적하다 (1946~1950년대)<\/h3>\n<ul><li class=''>과학자: 멜빈 캘빈(Melvin Calvin, 1911~1997), 미국 캘리포니아대학교 버클리의 화학자. 앤드루 벤슨(Andrew Benson), 제임스 배섬(James Bassham) 등과 함께 연구<\/li><li class=''>핵심 한 줄: <strong>방사성 탄소(¹⁴C)<\/strong> 가 든 CO₂를 녹조류에 몇 초만 주고 멈추어, 탄소가 어떤 물질로 차례차례 옮겨 가는지 알아냈다 → <strong>캘빈 회로(캘빈-벤슨 회로)<\/strong>.<\/li><li class=''>1961년 노벨 화학상(단독 수상)<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>19세기까지의 연구로 광합성의 재료(CO₂, H₂O, 빛)와 생성물(유기물, O₂)은 알려졌다. 그러나 CO₂가 <strong>어떤 중간 단계를 거쳐<\/strong> 당이 되는지는 알 수 없었다.<\/li><li class=''>제2차 세계 대전 뒤 원자로에서 방사성 동위원소 <strong>¹⁴C<\/strong> 를 쉽게 얻을 수 있게 되었다. 방사성 원소는 어디로 가든 방사선을 내므로 '꼬리표'처럼 추적할 수 있다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>CO₂의 탄소가 가장 먼저 붙는 물질은 무엇일까? 그다음에는 어떤 물질로 바뀌어 당이 될까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>빛을 받는 조류에 ¹⁴CO₂를 주고 <strong>아주 짧은 시간 뒤<\/strong> 반응을 멈추면, 탄소가 가장 먼저 들어간 물질에만 ¹⁴C가 있을 것이다. 시간을 조금씩 늘리면 ¹⁴C가 옮겨 가는 순서를 알 수 있을 것이다.<\/li><\/ul>\n<h4>4. 실험<\/h4>\n<ol><li class=''>단세포 녹조류 <strong>클로렐라<\/strong>를 납작한 유리 용기(모양 때문에 '롤리팝(막대사탕)'이라고 불림)에 넣고, 빛과 CO₂를 일정하게 주어 광합성이 안정되게 한다.<\/li><li class=''>여기에 ¹⁴CO₂(실제로는 ¹⁴C가 든 탄산수소염)를 넣는다.<\/li><li class=''>몇 초, 몇십 초 뒤 조류를 <strong>뜨거운 알코올<\/strong>에 쏟아 효소를 순식간에 멈추게 한다(반응 정지).<\/li><li class=''>세포 속 물질을 <strong>2차원 종이 크로마토그래피<\/strong>로 분리하고, X선 필름에 대어(<strong>자기방사법<\/strong>) ¹⁴C가 든 물질의 점을 찾는다.<\/li><li class=''>시간을 바꾸어 가며 어느 물질에 ¹⁴C가 먼저, 나중에 나타나는지 비교한다.<\/li><li class=''>추가 실험: 빛을 갑자기 끄거나 CO₂를 갑자기 줄였을 때 어떤 물질이 늘고 줄어드는지 본다.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>몇 초 만에 ¹⁴C가 가장 먼저 나타난 물질은 <strong>3-포스포글리세르산(3PG, PGA)<\/strong> 이라는 탄소 3개짜리 물질이었다.<\/li><li class=''>시간이 지나면 ¹⁴C가 여러 가지 당 인산(탄소 3·4·5·6·7개 화합물)으로 퍼졌다.<\/li><li class=''>빛을 끄면 3PG는 쌓이고 <strong>RuBP(리불로스 1,5-이중인산, 탄소 5개)<\/strong> 는 줄었다 → 빛이 있어야 3PG가 다음 단계로 가고(ATP·NADPH 필요), RuBP가 다시 만들어진다.<\/li><li class=''>CO₂를 줄이면 반대로 RuBP가 쌓였다 → <strong>CO₂는 RuBP에 붙는다<\/strong>.<\/li><li class=''>결론: CO₂는 RuBP와 결합해 3PG가 되고, 명반응에서 만든 <strong>ATP와 NADPH<\/strong>로 환원되어 당이 되며, RuBP는 다시 만들어져 회로가 돈다(탄소고정 → 환원 → RuBP 재생).<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>이 회로가 광합성의 <strong>탄소고정반응(캘빈 회로)<\/strong> 이고, 엽록체의 <strong>스트로마<\/strong>에서 일어난다.<\/li><li class=''>CO₂를 RuBP에 붙이는 효소가 지구에서 가장 많은 단백질로 알려진 <strong>루비스코(RuBisCO)<\/strong> 다.<\/li><li class=''>세포호흡의 TCA 회로처럼, 출발 물질이 다시 만들어지는 <strong>회로(cycle)<\/strong> 구조라는 점이 닮았다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>캘빈 회로는 '암반응'이라고도 불렸지만, 어두울 때 일어나는 반응이 아니다. 명반응의 산물(ATP, NADPH)이 필요하므로 실제로는 <strong>빛이 있을 때<\/strong> 활발하다.<\/li><li class=''>노벨상은 캘빈 혼자 받았지만, 벤슨·배섬 등 공동 연구자의 기여가 커서 오늘날 '캘빈-벤슨 회로'라고도 부른다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Calvin, M. (1961). The path of carbon in photosynthesis. Nobel Lecture, 11 December 1961. 노벨상 누리집: <a href=\"https://www.nobelprize.org/prizes/chemistry/1961/calvin/lecture/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1961/calvin/lecture/<\/a> / 원문 PDF(eScholarship, UC): <a href=\"https://escholarship.org/content/qt3p8851r9/qt3p8851r9.pdf\" target=\"_blank\" rel=\"noopener\">https://escholarship.org/content/qt3p8851r9/qt3p8851r9.pdf<\/a><\/li><li class=''>Bassham, J. A., Benson, A. A., &amp; Calvin, M. (1950). The path of carbon in photosynthesis. <em>Journal of Biological Chemistry<\/em>, 185, 781–787.<\/li><li class=''>Taiz 외 『Plant Physiology』 6판 웹 토픽 8.2 'How the Calvin–Benson Cycle was Elucidated'(옥스퍼드대 출판부): <a href=\"https://learninglink.oup.com/access/content/taiz-plant-physiology-6e-student-resources/taiz-plant-physiology-6e-topic-8-2-how-the-calvin-benson-cycle-was-elucidated\" target=\"_blank\" rel=\"noopener\">https://learninglink.oup.com/access/content/taiz-plant-physiology-6e-student-resources/taiz-plant-physiology-6e-topic-8-2-how-the-calvin-benson-cycle-was-elucidated<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 114쪽(탄소고정반응), 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P5_캘빈.pdf"}, {"id": "R5", "kind": "resp", "year": 1961, "ylab": "1961", "name": "미첼", "hook": "H⁺ 흐름이 ATP를 만든다", "html": "<h3>[세포호흡 역사 5] 미첼 — ATP는 '수소 이온의 흐름'으로 만들어진다: 화학삼투설 (1961)<\/h3>\n<ul><li class=''>과학자: 피터 미첼(Peter Mitchell, 1920~1992), 영국의 생화학자. 대학을 떠나 시골의 개인 연구소(글린 연구소)에서 연구를 이어 감<\/li><li class=''>핵심 한 줄: 전자전달계는 전자가 이동할 때 나온 에너지로 <strong>H⁺(수소 이온)를 막 바깥쪽으로 퍼내<\/strong> 농도 차이를 만들고, H⁺가 <strong>ATP 합성효소<\/strong>를 지나 되돌아올 때 ATP가 만들어진다 → <strong>화학삼투설<\/strong>.<\/li><li class=''>1978년 노벨 화학상(단독 수상)<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>1950년대에 마이토콘드리아의 <strong>전자전달계<\/strong>에서 전자가 NADH → … → O₂로 이동하며 <strong>산화적 인산화<\/strong>로 ATP가 만들어진다는 것은 알려졌다.<\/li><li class=''>그러나 <strong>전자 이동의 에너지가 어떻게 ATP 합성으로 넘어가는지<\/strong>는 몰랐다. 대부분의 학자는 해당 과정의 기질수준인산화처럼 '고에너지 중간 화합물'이 있을 것이라고 보고 그것을 찾았지만, 20년 가까이 아무도 찾지 못했다.<\/li><li class=''>또 이상한 점이 있었다: 산화적 인산화는 <strong>마이토콘드리아 막이 온전할 때만<\/strong> 일어났다. 막을 망가뜨리면 전자는 이동해도 ATP가 만들어지지 않았다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>왜 산화적 인산화에는 <strong>막<\/strong>이 꼭 필요할까? 아무리 찾아도 '고에너지 중간 화합물'이 없다면, 에너지는 다른 형태로 저장되는 것이 아닐까?<\/li><\/ul>\n<h4>3. 가설 (화학삼투설)<\/h4>\n<ol><li class=''>전자전달계의 운반체는 막 속에 방향을 갖고 배열되어, 전자가 이동할 때 <strong>H⁺를 막의 한쪽(기질 → 막 사이 공간)으로 이동<\/strong>시킨다.<\/li><li class=''>그 결과 막을 사이에 두고 <strong>H⁺ 농도 차이(pH 차이)와 전기적 차이<\/strong>가 생긴다. 미첼은 이 저장된 에너지를 <strong>양성자 구동력<\/strong>이라고 불렀다.<\/li><li class=''>막에 있는 <strong>ATP 합성효소<\/strong>는 H⁺가 농도가 낮은 쪽으로 되돌아오는 흐름을 이용해 ADP + Pi → ATP를 만든다.<\/li><li class=''>막이 H⁺를 그냥 새게 하면(짝풀림) 전자는 이동해도 ATP는 만들어지지 않는다.<\/li><\/ol>\n<h4>4. 가설을 확인한 실험들<\/h4>\n<ul><li class=''>미첼과 모일(Moyle): 마이토콘드리아에 산소를 조금 주면 <strong>바깥 용액이 산성으로 변하는 것<\/strong>(H⁺가 밖으로 나옴)을 측정했다(1960년대).<\/li><li class=''>야겐도르프와 우리베(1966): 엽록체의 틸라코이드에 <strong>인공으로 pH 차이<\/strong>만 만들어 주어도 어둠 속에서 ATP가 만들어졌다(→ 야겐도르프 주제).<\/li><li class=''>래커와 스토케니우스(1974): 빛을 받으면 H⁺를 퍼내는 세균 단백질(박테리오로돕신)과 <strong>ATP 합성효소<\/strong>를 인공 막 주머니에 함께 넣었더니, <strong>빛을 비출 때 ATP가 만들어졌다<\/strong> → 전자전달계 없이도 'H⁺ 농도 차이 + ATP 합성효소'만 있으면 ATP가 생긴다.<\/li><\/ul>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>처음에는 많은 학자가 반대했지만(이른바 '산화적 인산화 논쟁'), 위의 실험 결과가 쌓이며 화학삼투설이 받아들여졌다.<\/li><li class=''>결론: <strong>산화적 인산화와 광인산화는 모두 막을 사이에 둔 H⁺ 농도 차이를 이용해 ATP를 만든다.<\/strong><\/li><li class=''>1961년 영국 『네이처』에 발표했다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>마이토콘드리아: H⁺는 전자전달계에 의해 <strong>기질 → 막 사이 공간<\/strong>으로 이동하고, ATP 합성효소를 지나 <strong>기질<\/strong>로 돌아오며 ATP를 만든다(산화적 인산화).<\/li><li class=''>엽록체: H⁺는 <strong>스트로마 → 틸라코이드 내부<\/strong>로 이동하고, ATP 합성효소를 지나 <strong>스트로마<\/strong>로 돌아오며 ATP를 만든다(광인산화).<\/li><li class=''>교과서 115쪽 탐구 그림이 바로 이 공통 원리를 보여 준다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>H⁺는 막을 그냥 통과하지 못한다. 반드시 <strong>ATP 합성효소의 통로<\/strong>를 지나야 하므로 그 흐름이 ATP 합성에 쓰인다.<\/li><li class=''>'화학삼투'의 '삼투'는 물의 삼투가 아니라 <strong>이온이 막을 사이에 두고 이동한다<\/strong>는 뜻으로 붙인 이름이다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Mitchell, P. (1961). Coupling of phosphorylation to electron and hydrogen transfer by a chemi-osmotic type of mechanism. <em>Nature<\/em>, 191, 144–148. <a href=\"https://doi.org/10.1038/191144a0\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1038/191144a0<\/a><\/li><li class=''>노벨상 누리집 1978년 화학상 보도 자료: <a href=\"https://www.nobelprize.org/prizes/chemistry/1978/press-release/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1978/press-release/<\/a><\/li><li class=''>Jagendorf, A. T., &amp; Uribe, E. (1966). <em>PNAS<\/em>, 55, 170–177. <a href=\"https://doi.org/10.1073/pnas.55.1.170\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1073/pnas.55.1.170<\/a><\/li><li class=''>Racker, E., &amp; Stoeckenius, W. (1974). Reconstitution of purple membrane vesicles catalyzing light-driven proton uptake and adenosine triphosphate formation. <em>Journal of Biological Chemistry<\/em>, 249, 662–663.<\/li><li class=''>비상교육 고등 『세포와 물질대사』 114~115쪽(산화적 인산화, 전자전달계 비교)<\/li><\/ul>", "pdf": "R5_미첼.pdf"}, {"id": "P6", "kind": "light", "year": 1966, "ylab": "1966", "name": "야겐도르프", "hook": "빛 없이 pH 차이로 ATP", "html": "<h3>[광합성 역사 6] 야겐도르프 — 빛 없이 pH 차이만으로 ATP를 만들다 (1966)<\/h3>\n<ul><li class=''>과학자: 앙드레 야겐도르프(André Jagendorf, 1926~2017), 미국 존스홉킨스대학교·코넬대학교의 식물생리학자. 대학원생 에르네스트 우리베(Ernest Uribe)와 함께 연구<\/li><li class=''>핵심 한 줄: 엽록체의 틸라코이드를 <strong>산성(pH 4)<\/strong> 에 담갔다가 <strong>염기성(pH 8)<\/strong> 으로 옮기자, <strong>빛이 없는 어둠 속에서도 ATP가 만들어졌다<\/strong> → ATP 합성의 에너지원은 <strong>막 안팎의 H⁺ 농도 차이<\/strong>다(미첼의 화학삼투설을 뒷받침).<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>1950년대에 엽록체가 빛을 받아 ATP를 만든다는 것(<strong>광인산화<\/strong>)이 알려졌다.<\/li><li class=''>그러나 전자가 이동할 때 나온 에너지가 <strong>어떻게<\/strong> ATP 합성으로 이어지는지는 논쟁 중이었다.<\/li><li class='sub'>많은 학자: 전자전달 과정에서 '고에너지 중간 화합물'이 만들어져 ATP 합성에 쓰인다(화학적 짝지음설). 그러나 그 물질은 끝내 발견되지 않았다.<\/li><li class='sub'>피터 미첼(1961): 전자가 이동하며 <strong>H⁺를 막 한쪽으로 퍼 올려 농도 차이<\/strong>를 만들고, 그 H⁺가 되돌아오는 힘으로 ATP를 만든다(<strong>화학삼투설<\/strong>). 처음에는 많은 학자가 믿지 않았다.<\/li><\/ul>\n<h4>2. 관찰·의문<\/h4>\n<ul><li class=''>야겐도르프 연구진은 빛을 받은 틸라코이드가 H⁺를 안쪽으로 받아들인다는 것을 관찰했다.<\/li><li class=''>그렇다면 <strong>빛과 전자전달 없이 H⁺ 농도 차이만 인공으로 만들어 주어도<\/strong> ATP가 만들어질까?<\/li><\/ul>\n<h4>3. 가설<\/h4>\n<ul><li class=''>화학삼투설이 옳다면, 틸라코이드 안쪽을 산성(H⁺가 많음), 바깥쪽을 염기성(H⁺가 적음)으로 만들어 주기만 해도 ATP가 합성될 것이다.<\/li><\/ul>\n<h4>4. 실험 (모두 어둠 속에서)<\/h4>\n<ol><li class=''>시금치 잎에서 엽록체(틸라코이드)를 분리한다.<\/li><li class=''>틸라코이드를 <strong>pH 4의 산성 용액<\/strong>(숙신산 같은 유기산이 든 용액)에 담가, 틸라코이드 안쪽 공간까지 pH 4가 되게 한다.<\/li><li class=''>이 틸라코이드를 <strong>ADP와 무기 인산(Pi)<\/strong> 이 든 <strong>pH 8의 염기성 용액<\/strong>으로 재빨리 옮긴다 → 안쪽은 pH 4, 바깥은 pH 8이 되어 H⁺ 농도 차이가 생긴다.<\/li><li class=''>만들어진 ATP의 양을 잰다.<\/li><li class=''>비교(대조): 산성 단계 없이 바로 pH 8에 넣은 경우, 짝풀림제(H⁺가 막을 그냥 새어 나가게 하는 물질)를 넣은 경우.<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''><strong>빛이 전혀 없는데도<\/strong> 산성 → 염기성으로 옮긴 틸라코이드에서 ATP가 만들어졌다.<\/li><li class=''>pH 차이가 클수록 ATP가 많이 만들어졌고, 짝풀림제를 넣으면 ATP가 거의 만들어지지 않았다.<\/li><li class=''>결론: <strong>막을 사이에 둔 H⁺ 농도 차이(pH 차이) 자체가 ATP 합성의 에너지원<\/strong>이다. 빛과 전자전달계의 역할은 이 H⁺ 농도 차이를 만드는 것이다.<\/li><li class=''>1966년 미국 국립과학원회보(PNAS)에 발표했다.<\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>명반응에서 전자가 전자전달계를 따라 이동하면 H⁺가 <strong>스트로마 → 틸라코이드 안(내부 공간)<\/strong> 으로 이동해 쌓이고,<\/li><li class=''>H⁺가 <strong>ATP 합성효소<\/strong>를 통해 다시 스트로마로 나올 때 ADP + Pi → ATP가 만들어진다(<strong>광인산화<\/strong>, 화학삼투).<\/li><li class=''>마이토콘드리아의 산화적 인산화도 같은 원리다(→ 미첼 주제, 전자전달계 비교 주제와 연결).<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>이 실험은 \"빛이 필요 없다\"는 뜻이 아니다. 실제 잎에서는 <strong>빛 → 전자 이동 → H⁺ 농도 차이 → ATP<\/strong> 순서다. 실험에서는 중간의 H⁺ 농도 차이만 인공으로 만들어 준 것이다.<\/li><li class=''>산성 용액에 담그는 단계에서는 ATP가 생기지 않는다. <strong>pH 차이가 생긴 상태에서 ADP·Pi를 줄 때<\/strong> 생긴다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Jagendorf, A. T., &amp; Uribe, E. (1966). ATP formation caused by acid-base transition of spinach chloroplasts. <em>Proceedings of the National Academy of Sciences USA<\/em>, 55(1), 170–177. <a href=\"https://doi.org/10.1073/pnas.55.1.170\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1073/pnas.55.1.170<\/a> (무료 원문: PubMed Central PMC285771)<\/li><li class=''>Mitchell, P. (1961). Coupling of phosphorylation to electron and hydrogen transfer by a chemi-osmotic type of mechanism. <em>Nature<\/em>, 191, 144–148.<\/li><li class=''>비상교육 고등 『세포와 물질대사』 114~115쪽(광인산화, 전자전달계 비교), 116쪽 탐구 활동<\/li><\/ul>", "pdf": "P6_야겐도르프.pdf"}, {"id": "R6", "kind": "resp", "year": 1997, "ylab": "1994~97", "name": "보이어·워커", "hook": "ATP 합성효소는 회전 모터", "html": "<h3>[세포호흡 역사 6] 보이어·워커 — ATP 합성효소는 '돌아가는 분자 모터'다 (1970년대~1997)<\/h3>\n<ul><li class=''>과학자: 폴 보이어(Paul D. Boyer, 1918~2018, 미국 UCLA), 존 워커(John E. Walker, 1941~, 영국 케임브리지 MRC 연구소). 회전을 직접 본 실험은 일본 연구진(노지 히로유키, 기노시타 가즈히코, 요시다 마사스케 등)<\/li><li class=''>핵심 한 줄: ATP 합성효소는 H⁺가 지나갈 때 <strong>가운데 축이 빙글빙글 돌고<\/strong>, 그 회전이 주변 단백질의 모양을 차례로 바꾸어 <strong>ADP + Pi → ATP<\/strong>를 만든다.<\/li><li class=''>1997년 노벨 화학상(보이어·워커 공동, 나트륨-칼륨 펌프를 발견한 옌스 스코우와 함께)<\/li><\/ul>\n<h4>1. 시대 배경<\/h4>\n<ul><li class=''>미첼의 화학삼투설(1961)로 \"H⁺의 흐름이 ATP를 만든다\"는 것은 받아들여졌다.<\/li><li class=''>그러나 <strong>ATP 합성효소가 H⁺ 흐름의 에너지를 어떻게 ATP로 바꾸는지<\/strong>는 수수께끼였다.<\/li><\/ul>\n<h4>2. 관찰·의문 (보이어)<\/h4>\n<ul><li class=''>동위원소 실험에서 이상한 점이 있었다: ATP 합성효소의 활성 자리에서는 ATP가 <strong>에너지 없이도 저절로 만들어지고 있었다<\/strong>. 에너지가 필요한 단계는 ATP를 '만드는' 순간이 아니라 <strong>효소에서 ATP를 '떼어 내는' 순간<\/strong>이었다.<\/li><li class=''>효소에는 ATP를 만드는 자리가 <strong>3개<\/strong> 있는데, 각 자리가 동시에 일하지 않고 <strong>서로 다른 상태<\/strong>에 있었다.<\/li><\/ul>\n<h4>3. 가설 (결합 변화 기작, 보이어 1970년대)<\/h4>\n<ul><li class=''>3개의 자리는 차례로 <strong>① ADP·Pi를 느슨하게 붙잡음 → ② 꽉 조여 ATP를 만듦 → ③ 열어서 ATP를 내보냄<\/strong> 상태를 돈다.<\/li><li class=''>이 모양 변화는 효소 가운데의 <strong>축이 회전<\/strong>하면서 일어난다(<strong>회전 촉매<\/strong>). H⁺의 흐름이 그 축을 돌린다.<\/li><\/ul>\n<h4>4. 가설을 확인한 실험들<\/h4>\n<ol><li class=''><strong>구조 보기(워커, 1994)<\/strong>: 소의 심장 마이토콘드리아에서 ATP 합성효소의 머리 부분(F₁)을 분리해 결정으로 만들고 <strong>X선 결정학<\/strong>으로 원자 수준의 구조를 밝혔다 → 3개의 자리가 실제로 <strong>서로 다른 모양<\/strong>(비어 있음, ADP 결합, ATP 결합)이었고, 가운데에 <strong>비대칭인 축(γ 소단위)<\/strong> 이 꽂혀 있었다. 보이어의 가설과 꼭 맞았다.<\/li><li class=''><strong>회전 직접 보기(노지 등, 1997)<\/strong>: F₁ 부분을 유리판에 거꾸로 고정하고, 가운데 축에 <strong>형광 물질을 붙인 긴 액틴 섬유<\/strong>를 달았다. ATP를 넣자 현미경 속에서 섬유가 <strong>한 방향으로 빙글빙글 도는 모습<\/strong>이 보였다(ATP를 분해하는 반대 방향 반응으로 회전을 확인).<\/li><\/ol>\n<h4>5. 결과와 결론<\/h4>\n<ul><li class=''>ATP 합성효소는 H⁺ 흐름으로 돌아가는 <strong>세상에서 가장 작은 회전 모터<\/strong> 가운데 하나다.<\/li><li class=''>결론: <strong>H⁺가 막에 박힌 부분(F₀)을 지나며 축을 돌리고 → 축이 돌며 머리(F₁)의 3개 자리 모양을 차례로 바꾸어 → ATP가 만들어지고 떨어져 나온다.<\/strong><\/li><\/ul>\n<h4>6. 오늘날의 말로 다시 보면<\/h4>\n<ul><li class=''>마이토콘드리아 내막과 엽록체 틸라코이드 막, 세균의 세포막에 있는 ATP 합성효소는 <strong>구조와 원리가 거의 같다<\/strong>. 광인산화와 산화적 인산화가 같은 기계를 쓰는 셈이다(교과서 115쪽 그림의 'ATP 합성효소').<\/li><li class=''>사람은 하루에 대략 자기 몸무게만큼의 ATP를 만들고 다시 쓴다고 추정되는데, 그 대부분을 이 회전 모터가 만든다.<\/li><\/ul>\n<h4>7. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>노벨상 분야는 <strong>화학상<\/strong>이다(생리의학상이 아님).<\/li><li class=''>회전을 처음 '본' 1997년 실험은 ATP를 <strong>분해<\/strong>할 때의 회전이다. ATP를 <strong>합성<\/strong>할 때는 H⁺ 흐름이 축을 <strong>반대 방향<\/strong>으로 돌린다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>Boyer, P. D. (1997). Energy, life, and ATP. Nobel Lecture. / Walker, J. E. (1997). ATP synthesis by rotary catalysis. Nobel Lecture. 노벨상 누리집 1997년 화학상: <a href=\"https://www.nobelprize.org/prizes/chemistry/1997/summary/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1997/summary/<\/a><\/li><li class=''>Abrahams, J. P., Leslie, A. G. W., Lutter, R., &amp; Walker, J. E. (1994). Structure at 2.8 Å resolution of F1-ATPase from bovine heart mitochondria. <em>Nature<\/em>, 370, 621–628.<\/li><li class=''>Noji, H., Yasuda, R., Yoshida, M., &amp; Kinosita, K. Jr. (1997). Direct observation of the rotation of F1-ATPase. <em>Nature<\/em>, 386, 299–302. <a href=\"https://doi.org/10.1038/386299a0\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1038/386299a0<\/a><\/li><li class=''>Taiz 외 『Plant Physiology』 6판 웹 토픽 12.4 'FoF1-ATP Synthases: The World's Smallest Rotary Motors': <a href=\"https://learninglink.oup.com/access/content/taiz-plant-physiology-6e-student-resources/taiz-plant-physiology-6e-topic-12-4-fof1-atp-synthases-the-worlds-smallest-rotary-motors\" target=\"_blank\" rel=\"noopener\">https://learninglink.oup.com/access/content/taiz-plant-physiology-6e-student-resources/taiz-plant-physiology-6e-topic-12-4-fof1-atp-synthases-the-worlds-smallest-rotary-motors<\/a><\/li><li class=''>비상교육 고등 『세포와 물질대사』 115쪽 탐구 그림(ATP 합성효소)<\/li><\/ul>", "pdf": "R6_보이어_워커.pdf"}, {"id": "C1", "kind": "both", "year": 2000, "ylab": "비교", "name": "전자전달계 비교", "hook": "엽록체 vs 마이토콘드리아", "html": "<h3>[비교 주제] 광합성과 세포호흡의 전자전달계 — 닮은 점과 다른 점 (교과서 115쪽 탐구)<\/h3>\n<ul><li class=''>성취기준: [12세포03-07] 광합성과 세포호흡의 전자 전달계를 비교하여 공통점과 차이점을 다양한 매체를 활용하여 설명할 수 있다.<\/li><li class=''>핵심 한 줄: 엽록체와 마이토콘드리아는 <strong>같은 원리(전자 이동 → H⁺ 농도 차이 → ATP 합성효소 → ATP)<\/strong> 로 ATP를 만들지만, <strong>에너지의 출발점, 전자를 주는 물질, 전자를 받는 물질, H⁺가 쌓이는 곳<\/strong>이 다르다.<\/li><li class=''>이 주제는 과학자 한 사람의 이야기가 아니라, <strong>미첼(화학삼투설), 야겐도르프(산-염기 실험), 보이어·워커(ATP 합성효소)<\/strong> 의 연구가 모여 밝혀진 내용을 정리하는 주제다.<\/li><\/ul>\n<h4>1. 공통점 (에너지·효소·산화환원 중심 — 115쪽 활동 길잡이)<\/h4>\n<div class='tw'><table><thead><tr><th>관점<\/th><th>공통점<\/th><\/tr><\/thead><tbody><tr><td>산화환원<\/td><td>전자가 <strong>전자 운반체<\/strong>를 차례로 지나가며 산화·환원이 반복된다. 전자는 에너지가 높은 상태에서 낮은 상태로 이동한다<\/td><\/tr><tr><td>에너지<\/td><td>전자가 이동하며 나온 에너지로 <strong>H⁺를 막 한쪽으로 능동 수송<\/strong>해 농도 차이(양성자 구동력)를 만든다<\/td><\/tr><tr><td>효소<\/td><td>H⁺가 <strong>ATP 합성효소<\/strong>를 지나 되돌아올 때 ADP + Pi → ATP 가 만들어진다(화학삼투)<\/td><\/tr><tr><td>구조<\/td><td>전자전달계와 ATP 합성효소가 모두 <strong>막<\/strong>에 박혀 있다. 막이 망가지면 ATP를 만들 수 없다<\/td><\/tr><tr><td>기원<\/td><td>두 세포소기관 모두 자신의 DNA와 리보솜을 갖고, 막의 구조가 세균과 비슷하다(세포내 공생설)<\/td><\/tr><\/tbody><\/table><\/div>\n<h4>2. 차이점 (115쪽 표 채우기)<\/h4>\n<div class='tw'><table><thead><tr><th>구분<\/th><th>광합성(엽록체)<\/th><th>세포호흡(마이토콘드리아)<\/th><\/tr><\/thead><tbody><tr><td>ATP 합성 장소<\/td><td><strong>틸라코이드 막<\/strong><\/td><td><strong>마이토콘드리아 내막<\/strong><\/td><\/tr><tr><td>에너지의 출발점<\/td><td><strong>빛에너지<\/strong>(엽록소가 흡수)<\/td><td>유기물(포도당)의 <strong>화학 에너지<\/strong><\/td><\/tr><tr><td>전자공여체(전자를 주는 물질)<\/td><td><strong>물(H₂O)<\/strong> → 광분해되어 O₂ 방출<\/td><td><strong>NADH, FADH₂<\/strong><\/td><\/tr><tr><td>최종 전자수용체<\/td><td><strong>NADP⁺<\/strong> → NADPH가 됨<\/td><td><strong>산소(O₂)<\/strong> → 물(H₂O)이 됨<\/td><\/tr><tr><td>H⁺가 쌓이는 곳(농도가 높은 쪽)<\/td><td><strong>틸라코이드 내부(공간)<\/strong><\/td><td><strong>막 사이 공간<\/strong><\/td><\/tr><tr><td>ATP가 만들어지는 쪽<\/td><td><strong>스트로마<\/strong><\/td><td><strong>기질(매트릭스)<\/strong><\/td><\/tr><tr><td>인산화의 이름<\/td><td><strong>광인산화<\/strong><\/td><td><strong>산화적 인산화<\/strong><\/td><\/tr><tr><td>만든 ATP의 쓰임<\/td><td>주로 캘빈 회로(포도당 합성)에 쓰임<\/td><td>세포의 여러 생명 활동에 쓰임<\/td><\/tr><tr><td>산소<\/td><td><strong>만들어진다<\/strong>(물의 광분해)<\/td><td><strong>쓰인다<\/strong>(최종 전자수용체)<\/td><\/tr><\/tbody><\/table><\/div>\n<h4>3. 한 장으로 정리하기 (발표 자료 아이디어)<\/h4>\n<ul><li class=''><strong>거울 그림<\/strong>: 왼쪽 엽록체, 오른쪽 마이토콘드리아를 같은 모양으로 그리고, 전자 화살표·H⁺ 화살표·ATP 합성효소를 같은 색으로 표시한다. 다른 부분(빛 ↔ NADH, NADP⁺ ↔ O₂)만 다른 색으로 강조한다.<\/li><li class=''><strong>물레방아 비유<\/strong>: 펌프(전자전달계)가 물(H⁺)을 높은 곳으로 퍼 올리고, 물이 내려오며 물레방아(ATP 합성효소)를 돌려 방아(ATP)를 찧는다. 엽록체의 펌프는 <strong>햇빛<\/strong>으로, 마이토콘드리아의 펌프는 <strong>음식에서 온 전자<\/strong>로 움직인다.<\/li><li class=''><strong>순환 연결<\/strong>: 광합성이 내놓은 O₂ → 세포호흡의 최종 전자수용체, 세포호흡이 내놓은 H₂O·CO₂ → 광합성의 재료.<\/li><\/ul>\n<h4>4. 이 내용을 밝힌 실험 (자세한 내용은 각 과학자 자료)<\/h4>\n<ul><li class=''>미첼(1961): 화학삼투설 제안 → 1978 노벨 화학상<\/li><li class=''>야겐도르프·우리베(1966): 엽록체에 pH 차이만 만들어 주어도 어둠 속에서 ATP 합성<\/li><li class=''>래커·스토케니우스(1974): H⁺ 펌프 + ATP 합성효소만 넣은 인공 막에서 빛으로 ATP 합성<\/li><li class=''>워커(1994) 구조, 노지 등(1997) 회전 관찰 → ATP 합성효소는 회전 모터<\/li><\/ul>\n<h4>5. 헷갈리기 쉬운 점<\/h4>\n<ul><li class=''>광합성의 최종 전자수용체는 O₂가 아니라 <strong>NADP⁺<\/strong> 다. O₂는 물이 분해될 때 <strong>나오는<\/strong> 물질이다.<\/li><li class=''>엽록체도 마이토콘드리아를 따로 가지고 있다 → 식물 세포는 <strong>광합성과 세포호흡을 모두<\/strong> 한다.<\/li><li class=''>엽록체에서 H⁺는 틸라코이드 <strong>안쪽<\/strong>에 쌓이고, 마이토콘드리아에서는 막 사이 공간(내막의 <strong>바깥쪽<\/strong>)에 쌓인다. 두 경우 모두 ATP 합성효소의 머리(F₁)는 <strong>H⁺가 적은 쪽<\/strong>(스트로마, 기질)을 향한다.<\/li><\/ul>\n<h4>참고 문헌<\/h4>\n<ul><li class=''>비상교육 고등 『세포와 물질대사』 114쪽(광합성과 세포호흡의 관계), 115쪽 탐구 '광합성과 세포호흡의 전자전달계 비교하기'<\/li><li class=''>Mitchell, P. (1961). <em>Nature<\/em>, 191, 144–148. <a href=\"https://doi.org/10.1038/191144a0\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1038/191144a0<\/a><\/li><li class=''>Jagendorf, A. T., &amp; Uribe, E. (1966). <em>PNAS<\/em>, 55, 170–177. <a href=\"https://doi.org/10.1073/pnas.55.1.170\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1073/pnas.55.1.170<\/a><\/li><li class=''>Noji, H. et al. (1997). <em>Nature<\/em>, 386, 299–302. <a href=\"https://doi.org/10.1038/386299a0\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1038/386299a0<\/a><\/li><li class=''>노벨상 누리집 1978년 화학상(미첼): <a href=\"https://www.nobelprize.org/prizes/chemistry/1978/press-release/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1978/press-release/<\/a> / 1997년 화학상(보이어·워커): <a href=\"https://www.nobelprize.org/prizes/chemistry/1997/summary/\" target=\"_blank\" rel=\"noopener\">https://www.nobelprize.org/prizes/chemistry/1997/summary/<\/a><\/li><\/ul>", "pdf": "C1_전자전달계_비교.pdf"}]};
+const KIND = {light:"광합성 역사", resp:"세포호흡 역사", both:"둘을 비교"};
+let cur = null, kind = "info";
+const $ = id => document.getElementById(id);
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+
+const tl = $("tl");
+DATA.topics.forEach(t=>{
+  const row = document.createElement("div");
+  const card = `<button class="pick ${t.kind}" type="button" aria-pressed="false" data-id="${t.id}"><span class="nm">${t.name}</span><span class="hk">${t.hook}</span></button>`;
+  if(t.kind==="both"){ row.className="row c"; row.innerHTML = card; }
+  else { row.className="row"; row.innerHTML = t.kind==="light" ? `${card}<span class="yr">${t.ylab}</span><span></span>` : `<span></span><span class="yr">${t.ylab}</span>${card}`; }
+  tl.appendChild(row);
+});
+tl.addEventListener("click", e=>{ const b=e.target.closest(".pick"); if(b) choose(b.dataset.id, true); });
+
+function choose(id, scroll){
+  cur = DATA.topics.find(t=>t.id===id); if(!cur) return;
+  store("lp-topic", id);
+  document.querySelectorAll(".pick").forEach(b=>b.setAttribute("aria-pressed", b.dataset.id===id));
+  $("chosen").hidden = false; $("nochoice").hidden = true;
+  const tg=$("ch-tag"); tg.className="tag "+cur.kind; tg.textContent = KIND[cur.kind];
+  $("ch-who").textContent = cur.kind==="both" ? cur.name : `${cur.ylab} ${cur.name}`;
+  $("ch-hook").textContent = cur.hook;
+  $("b-pdf").href = "pdf/" + encodeURIComponent(cur.pdf);
+  $("ch-file").textContent = cur.pdf;
+  $("mk-src").textContent = cur.pdf;
+  $("ch-doc").innerHTML = cur.html; $("ch-doc").hidden = true; $("b-read").setAttribute("aria-expanded","false"); $("b-read").textContent="미리 읽기";
+  fill();
+  if(scroll) $("chosen").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"nearest"});
+}
+$("b-read").onclick = ()=>{ const d=$("ch-doc"); d.hidden=!d.hidden; $("b-read").setAttribute("aria-expanded", !d.hidden); $("b-read").textContent = d.hidden?"미리 읽기":"접기"; };
+
+function who(){ return cur ? (cur.kind==="both" ? "광합성과 세포호흡의 전자전달계 비교" : `${cur.name}(${cur.ylab})의 연구`) : "[내가 고른 주제]"; }
+function tag(){ return cur ? (cur.kind==="both" ? "[비교] 전자전달계" : `[${cur.ylab} ${cur.name}]`) : "[연도 과학자]"; }
+function fill(){
+  const w = who();
+  const src = "내가 올린 PDF 자료를 중심으로 만들고, 내가 더 넣은 믿을 만한 자료가 있으면 함께 활용해 줘. 소스에 없는 내용은 지어내지 마.";
+  const frame = cur && cur.kind==="both"
+    ? "① 두 세포소기관의 위치와 하는 일 ② 공통점(전자 운반체, H⁺ 농도 차이, ATP 합성효소) ③ 차이점 표(ATP 합성 장소, 전자공여체, 최종 전자수용체, H⁺가 쌓이는 곳) ④ 이 원리를 밝힌 실험 한 가지 ⑤ 두 과정이 이어지는 순환"
+    : "① 시대 배경 ② 관찰·의문 ③ 가설 ④ 실험 방법(장치와 순서를 그림으로) ⑤ 결과와 결론 ⑥ 오늘날 광합성·세포호흡에서 무엇을 밝힌 것인지";
+  $("p-make").textContent = {
+    info: `고등학교 2학년 학생이 보는 한국어 인포그래픽을 만들어 줘.\n주제: ${w}\n${src}\n위에서 아래로 다음 순서로 구성해 줘: ${frame}.\n연도, 과학자 이름, 물질 이름(이산화 탄소, 산소, ATP 등)은 자료와 똑같이 쓰고, 한 칸의 글은 두 줄 이내로 짧게 써 줘.`,
+    slide:`고등학교 2학년 학생이 발표할 한국어 슬라이드 6장을 만들어 줘.\n주제: ${w}\n${src}\n장마다 다음을 하나씩 담아 줘: ${frame}.\n장마다 큰 그림이나 도식 하나와 짧은 문장 3줄 이내로 구성하고, 마지막 장에 참고 문헌을 넣어 줘.`,
+    video:`고등학교 2학년 학생이 보는 2~3분 길이의 한국어 설명 동영상을 만들어 줘.\n주제: ${w}\n${src}\n다음 순서로 이야기해 줘: ${frame}.\n어려운 용어는 처음 나올 때 쉬운 말로 풀어 줘.`
+  }[kind];
+  $("p-check").textContent = `너는 고등학교 생명과학 선생님이야. 첨부한 파일은 내가 NotebookLM으로 만든 '${w}' 자료야.\n고친 문장을 대신 써 주지 말고, 다음을 검사해서 표로 알려 줘.\n1. 과학적 오류: 용어, 물질, 반응, 일어나는 장소가 틀린 곳\n2. 역사적 오류: 연도, 인물, 실험 방법, 실험 결과가 틀린 곳\n표의 칸: [틀린 부분 | 바른 내용 | 근거(교과서 수준의 사실, 원 논문, 노벨상 누리집처럼 믿을 수 있는 곳)]\n3. '관찰·의문 → 가설 → 실험 → 결과·결론' 네 단계가 모두 들어 있는지, 빠진 단계가 있으면 무엇인지\n확실하지 않은 것은 '확실하지 않음'이라고 써 줘. 틀린 곳이 없으면 '오류 없음'이라고 써 줘.`;
+  $("p-post").textContent = `제목: ${tag()} 내 이름\n\n관찰·의문: \n가설: \n실험: \n결과·결론: \n오늘날의 의미(세포호흡·광합성의 어느 부분?): \n더 넣은 자료(있으면 출처): \n검증 메모(제미나이로 확인한 것): 고친 점 1가지 또는 '오류 없음'\n\n+ 만든 파일 첨부(인포그래픽 그림 / 슬라이드 PDF / 동영상)`;
+  $("mk-title").textContent = `${tag()} 내 이름`;
+  $("ex-title").textContent = `${tag()} 김가온`;
+}
+$("kind-tabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; kind=b.dataset.k;
+  document.querySelectorAll("#kind-tabs button").forEach(x=>x.setAttribute("aria-selected", x===b)); fill(); });
+document.querySelectorAll("[data-copy]").forEach(b=> b.onclick = ()=> copy($(b.dataset.copy).textContent, "복사했어요"));
+
+function copy(text, msg){
+  const done = ()=>toast(msg);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, ()=>fallback(text, done));
+  } else fallback(text, done);
+}
+function fallback(text, done){
+  const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){} ta.remove();
+  ok ? done() : toast("복사가 안 되면 글을 길게 눌러 직접 복사하세요");
+}
+let tt; function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("on"),1800); }
+
+const pd = $("pd-link");
+if(DATA.padlet){ const a=document.createElement("a"); a.href=DATA.padlet; a.target="_blank"; a.rel="noopener"; a.textContent=DATA.padlet; pd.appendChild(a); }
+else pd.textContent = "선생님이 알려 준 패들렛 링크";
+
+document.querySelectorAll("#self input").forEach(c=>{ c.checked = store("lp-"+c.id)==="1"; c.onchange=()=>store("lp-"+c.id, c.checked?"1":"0"); });
+const saved = store("lp-topic"); if(saved) choose(saved, false); else fill();
+</script>
+</html>
