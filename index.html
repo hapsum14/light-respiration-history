@@ -206,6 +206,8 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
 .check input{margin-top:6px;width:20px;height:20px;accent-color:var(--pink-d);flex:none}
 .foot{text-align:center;color:var(--sub);font-size:14px;display:flex;justify-content:center;align-items:center;gap:6px}
 .foot svg{width:18px;height:18px}
+.foot{flex-wrap:wrap}
+.foot .made{font-family:var(--head);color:var(--ink);margin-left:10px;padding-left:12px;border-left:1.5px solid var(--line)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-family:var(--head);padding:8px 18px;border-radius:999px;font-size:16px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
 .toast.on{opacity:1}
 @media (max-width:600px){
@@ -485,7 +487,7 @@ mark.fillv{background:var(--mint);color:#1F5C48;border-radius:4px;padding:0 3px}
     </div>
   </section>
 
-  <p class="foot"><svg viewBox="0 0 24 24" fill="#A8D5C2" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z"/></svg>빛과 호흡의 과학사 · 생명과학 탐구 수업</p>
+  <p class="foot"><svg viewBox="0 0 24 24" fill="#A8D5C2" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z"/></svg>빛과 호흡의 과학사 · 생명과학 AI 융합 수업<span class="made">Made by. 가운고 김태하</span></p>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
